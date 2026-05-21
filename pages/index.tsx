@@ -17,7 +17,7 @@ export default function Home() {
         <meta name="robots" content="index,follow" />
       </Head>
       <Header />
-      <main className="container py-12 flex-1">
+      <main className="container page-offset pt-24 pb-12 flex-1">
         <Hero />
         <Services />
         <Solutions />

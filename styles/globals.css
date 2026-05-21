@@ -33,3 +33,23 @@ body {
   background: linear-gradient(90deg, rgba(14,231,255,0.08), rgba(0,209,255,0.06));
   color: var(--muted);
 }
+
+/* Hero background accents */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: radial-gradient(circle at 10% 20%, rgba(14,231,255,0.06), transparent 12%),
+                    radial-gradient(circle at 90% 80%, rgba(0,209,255,0.04), transparent 18%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+/* Slightly larger container padding for fixed header */
+.page-offset {
+  padding-top: 4.5rem;
+}
+
+.hero-visual {
+  transform: translateZ(0);
+}
