@@ -4,6 +4,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center" aria-label="Hero">
       <div className="hero-bg" />
+      <img src="/logo-full.svg" alt="" aria-hidden="true" className="hero-logo-large" />
       <div className="container relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         <div className="md:col-span-7">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>

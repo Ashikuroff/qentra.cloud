@@ -53,3 +53,30 @@ body {
 .hero-visual {
   transform: translateZ(0);
 }
+
+/* Large watermark logo in hero */
+.hero-logo-large {
+  position: absolute;
+  right: -6%;
+  top: 6%;
+  width: 72%;
+  max-width: 1100px;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+  transform: translate3d(0,0,0);
+}
+
+@media (max-width: 1024px) {
+  .hero-logo-large {
+    opacity: 0.04;
+    width: 110%;
+    right: -20%;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-logo-large {
+    display: none;
+  }
+}
