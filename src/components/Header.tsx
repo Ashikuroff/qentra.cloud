@@ -4,9 +4,10 @@ export default function Header() {
   return (
     <header className="border-b border-white/6 glass">
       <div className="container flex items-center justify-between py-4">
-        <Link href="/" className="text-white font-bold text-lg tracking-wide">
-          Qentra.cloud
-        </Link>
+          <Link href="/" className="flex items-center gap-3">
+            <img src="/logo.svg" alt="Qentra.cloud" className="w-10 h-10" />
+            <span className="hidden sm:inline text-white font-bold text-lg tracking-wide">Qentra.cloud</span>
+          </Link>
         <nav className="hidden md:flex gap-6 items-center text-sm text-white/80">
           <a href="#services">Services</a>
           <a href="#solutions">Solutions</a>
