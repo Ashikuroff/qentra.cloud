@@ -12,13 +12,13 @@ export default function CloudSection() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="md:col-span-1 order-1 md:order-2">
-          <h3 className="text-3xl font-heading font-extrabold">Cloud Automation & Platform Engineering</h3>
-          <p className="mt-4 text-white/80 max-w-xl">Modernize infrastructure with Kubernetes, GitOps, Infrastructure as Code, and production-ready CI/CD to scale reliably across clouds.</p>
+          <h3 className="text-3xl font-heading font-extrabold">GPU Infrastructure & Production Platform Engineering</h3>
+          <p className="mt-4 text-white/80 max-w-xl">We design high-performance, resilient cloud systems built to handle heavy computational workloads. By leveraging Kubernetes, Infrastructure as Code, and automated GitOps pipelines, we empower your team to deploy models and applications with confidence.</p>
           <ul className="mt-6 space-y-2 text-white/80">
-            <li>• Kubernetes & platform engineering</li>
-            <li>• IaC, Terraform & GitOps</li>
-            <li>• CI/CD pipelines & progressive delivery</li>
-            <li>• Multi-cloud automation & observability</li>
+            <li>• GPU-Optimized Kubernetes Orchestration</li>
+            <li>• Terraform/IaC & Cloud Infrastructure Automation</li>
+            <li>• Progressive Delivery & High-Throughput CI/CD</li>
+            <li>• Multi-Cloud Architectures & Advanced Observability</li>
           </ul>
           <div className="mt-6">
             <a href="#services" className="inline-block px-5 py-3 rounded-md bg-gradient-to-r from-electric to-cyan text-black font-semibold">Modernize Your Infrastructure</a>
