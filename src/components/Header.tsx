@@ -1,6 +1,8 @@
 import Link from 'next/link'
-
+import { useState } from 'react'
 export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-transparent">
       <div className="container flex items-center justify-between py-4">
@@ -19,9 +21,32 @@ export default function Header() {
         </nav>
 
         <div className="md:hidden">
-          <button aria-label="Open menu" className="bg-white/6 p-2 rounded-md">☰</button>
+          <button aria-label="Open menu" onClick={() => setIsOpen(true)} className="bg-white/6 p-2 rounded-md hover:bg-white/10 transition">
+            ☰
+          </button>
         </div>
-      </div>
-    </header>
+        </div>
+      </header>
+      {/* Mobile menu overlay */}
+      {isOpen && (
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex flex-col items-center justify-center z-50">
+          <button
+            aria-label="Close menu"
+            onClick={() => setIsOpen(false)}
+            className="absolute top-4 right-4 text-white text-3xl"
+          >
+            ✕
+          </button>
+          <nav className="flex flex-col gap-6 text-white text-xl text-center">
+            <a href="#home" onClick={() => setIsOpen(false)} className="hover:underline">Home</a>
+            <a href="#services" onClick={() => setIsOpen(false)} className="hover:underline">Services</a>
+            <a href="#solutions" onClick={() => setIsOpen(false)} className="hover:underline">Solutions</a>
+            <a href="#tech" onClick={() => setIsOpen(false)} className="hover:underline">Tech</a>
+            <a href="#about" onClick={() => setIsOpen(false)} className="hover:underline">About</a>
+            <a href="#contact" onClick={() => setIsOpen(false)} className="hover:underline">Contact</a>
+          </nav>
+        </div>
+      )}
+    </>
   )
 }
