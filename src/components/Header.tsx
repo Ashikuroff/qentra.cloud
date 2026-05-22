@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  return (
+  return ( <>
 
     <header className="fixed top-0 left-0 right-0 z-50 bg-transparent">
       <div className="container flex items-center justify-between py-4">
@@ -50,3 +50,4 @@ export default function Header() {
     </>
   )
 }
+// trigger redeploy
