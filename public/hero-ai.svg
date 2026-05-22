@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" fill="none">
+  <defs>
+    <linearGradient id="ai-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#061028" />
+      <stop offset="100%" stop-color="#0b1222" />
+    </linearGradient>
+    <filter id="ai-glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="800" height="600" fill="url(#ai-bg)"/>
+  <!-- Neural network circles -->
+  <circle cx="600" cy="100" r="8" fill="#0ee7ff" opacity="0.6" filter="url(#ai-glow)"/>
+  <circle cx="650" cy="200" r="6" fill="#7c3aed" opacity="0.5"/>
+  <circle cx="550" cy="250" r="7" fill="#0ee7ff" opacity="0.4"/>
+  <circle cx="700" cy="350" r="5" fill="#7c3aed" opacity="0.6"/>
+  <circle cx="580" cy="450" r="6" fill="#0ee7ff" opacity="0.5"/>
+  <!-- Connection lines -->
+  <line x1="600" y1="100" x2="650" y2="200" stroke="#0ee7ff" stroke-width="1" opacity="0.2"/>
+  <line x1="650" y1="200" x2="550" y2="250" stroke="#7c3aed" stroke-width="1" opacity="0.2"/>
+  <line x1="550" y1="250" x2="700" y2="350" stroke="#0ee7ff" stroke-width="1" opacity="0.2"/>
+  <line x1="700" y1="350" x2="580" y2="450" stroke="#7c3aed" stroke-width="1" opacity="0.2"/>
+  <!-- Animated gradient orbs -->
+  <circle cx="150" cy="500" r="120" fill="none" stroke="#0ee7ff" stroke-width="1" opacity="0.08"/>
+  <circle cx="150" cy="500" r="100" fill="none" stroke="#7c3aed" stroke-width="1" opacity="0.06"/>
+</svg>

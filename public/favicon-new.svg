@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="fav-grad" x1="0" x2="1">
+      <stop offset="0%" stop-color="#0ee7ff" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="128" fill="#061028"/>
+  <!-- Main circle -->
+  <circle cx="256" cy="256" r="180" fill="none" stroke="url(#fav-grad)" stroke-width="12" opacity="0.9"/>
+  <!-- Inner circles -->
+  <circle cx="256" cy="256" r="130" fill="none" stroke="#0ee7ff" stroke-width="2" opacity="0.4"/>
+  <circle cx="256" cy="256" r="80" fill="none" stroke="#7c3aed" stroke-width="2" opacity="0.4"/>
+  <!-- Center node -->
+  <circle cx="256" cy="256" r="24" fill="url(#fav-grad)"/>
+  <!-- Dots on radius -->
+  <circle cx="256" cy="110" r="8" fill="#0ee7ff" opacity="0.8"/>
+  <circle cx="370" cy="256" r="8" fill="#7c3aed" opacity="0.8"/>
+  <circle cx="256" cy="402" r="8" fill="#0ee7ff" opacity="0.8"/>
+  <circle cx="142" cy="256" r="8" fill="#7c3aed" opacity="0.8"/>
+</svg>

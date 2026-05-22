@@ -7,7 +7,7 @@ const slides = [
     title: 'AI Automation for Intelligent Operations',
     subtitle: 'Design intelligent agents, workflows, and copilots to automate business processes and surface insights.',
     cta: 'Explore AI Solutions',
-    img: '/hero-graphic.svg',
+    img: '/hero-ai.svg',
     bg: 'bg-[radial-gradient(600px_400px_at_10%_20%,rgba(14,231,255,0.04),transparent_12%),radial-gradient(400px_300px_at_90%_80%,rgba(102,16,242,0.03),transparent_18%)]'
   },
   {
@@ -15,7 +15,7 @@ const slides = [
     title: 'Cloud Automation & Platform Engineering',
     subtitle: 'Modernize platforms with Kubernetes, GitOps, IaC, and scalable CI/CD for multi-cloud environments.',
     cta: 'Modernize Your Infrastructure',
-    img: '/hero-graphic.svg',
+    img: '/hero-cloud.svg',
     bg: 'bg-[linear-gradient(90deg,rgba(2,6,23,0.35),rgba(7,16,35,0.1))]'
   },
   {
@@ -23,7 +23,7 @@ const slides = [
     title: 'Security Automation & Intelligent Protection',
     subtitle: 'Automate threat detection, compliance, and remediation with AI-assisted security operations.',
     cta: 'Secure Your Platform',
-    img: '/hero-graphic.svg',
+    img: '/hero-security.svg',
     bg: 'bg-[linear-gradient(90deg,rgba(6,7,15,0.45),rgba(2,8,20,0.08))]'
   }
 ]

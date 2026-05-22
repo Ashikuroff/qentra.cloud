@@ -13,32 +13,20 @@ export default function App({ Component, pageProps }: AppProps) {
 
         {/* Open Graph */}
         <meta property="og:title" content="Qentra.cloud — AI Automation & Cloud Engineering" />
-        <meta property="og:description" content="Qentra.cloud helps organizations design, automate, and scale intelligent cloud-native systems using AI, Kubernetes, and DevOps." />
+        <meta property="og:description" content="Enterprise-grade AI automation, cloud engineering, and security solutions for modern businesses." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={process.env.SITE_URL || 'https://qentra.cloud'} />
-        <meta property="og:image" content={`${process.env.SITE_URL || 'https://qentra.cloud'}/og-image.svg`} />
+        <meta property="og:image" content={`${process.env.SITE_URL || 'https://qentra.cloud'}/og-image-new.svg`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Qentra.cloud — AI Automation & Cloud Engineering" />
-        <meta name="twitter:description" content="Qentra.cloud helps organizations design, automate, and scale intelligent cloud-native systems using AI, Kubernetes, and DevOps." />
-        <meta name="twitter:image" content={`${process.env.SITE_URL || 'https://qentra.cloud'}/og-image.svg`} />
-
-        {/* Structured Data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Organization',
-              name: 'Qentra.cloud',
-              url: process.env.SITE_URL || 'https://qentra.cloud',
-              logo: `${process.env.SITE_URL || 'https://qentra.cloud'}/logo.svg`,
-              sameAs: []
-            })
-          }}
-        />
-        <link rel="icon" href="/favicon.svg" />
+        <meta name="twitter:description" content="Enterprise-grade AI automation, cloud engineering, and security solutions for modern businesses." />
+        <meta name="twitter:image" content={`${process.env.SITE_URL || 'https://qentra.cloud'}/og-image-new.svg`} />
+        <meta name="theme-color" content="#061028" />
+        <link rel="icon" href="/favicon-new.svg" />
       </Head>
       <Component {...pageProps} />
     </>
