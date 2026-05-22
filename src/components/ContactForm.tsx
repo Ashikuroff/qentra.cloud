@@ -7,9 +7,21 @@ export default function ContactForm() {
   const [message, setMessage] = useState('')
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
 
+  function validate() {
+    if (!name.trim() || !email.trim() || !message.trim()) return false
+    // simple email regex
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return false
+    return true
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+    if (!validate()) {
+      setStatus('error')
+      return
+    }
     setStatus('sending')
+    // prefer server SendGrid; if not configured, fallback to Formspree client submission
     try {
       const res = await axios.post('/api/contact', { name, email, message })
       if (res.data?.ok) {
@@ -17,12 +29,31 @@ export default function ContactForm() {
         setName('')
         setEmail('')
         setMessage('')
-      } else {
-        setStatus('error')
+        return
       }
     } catch (err) {
-      setStatus('error')
+      // continue to fallback
     }
+
+    // Fallback to Formspree if NEXT_PUBLIC_FORMSPREE_ENDPOINT is set
+    const formspree = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT
+    if (formspree) {
+      try {
+        const r = await axios.post(formspree, { name, email, message })
+        if (r.status === 200 || r.status === 201) {
+          setStatus('success')
+          setName('')
+          setEmail('')
+          setMessage('')
+          return
+        }
+      } catch (err) {
+        setStatus('error')
+        return
+      }
+    }
+
+    setStatus('error')
   }
 
   return (
@@ -40,7 +71,9 @@ export default function ContactForm() {
         <textarea required value={message} onChange={(e) => setMessage(e.target.value)} rows={6} className="mt-2 w-full bg-transparent border border-white/8 rounded-md px-3 py-2" />
       </div>
       <div className="md:col-span-2 flex items-center justify-between">
-        <div className="text-sm text-white/80">{status === 'success' ? 'Thanks — we will reply soon.' : status === 'error' ? 'An error occurred.' : ''}</div>
+        <div className="text-sm text-white/80">
+          {status === 'success' ? 'Thanks — we will reply soon.' : status === 'error' ? 'Please check your inputs or try again.' : ''}
+        </div>
         <button type="submit" disabled={status === 'sending'} className="px-5 py-2 rounded-md bg-gradient-to-r from-electric to-cyan text-black font-semibold">{status === 'sending' ? 'Sending...' : 'Send Message'}</button>
       </div>
     </form>
