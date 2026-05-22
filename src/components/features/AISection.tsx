@@ -21,7 +21,7 @@ export default function AISection() {
 
         <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="md:col-span-1">
           <div className="glass p-6 rounded-xl shadow-glow-md">
-            <img src="/hero-graphic.svg" alt="AI automation visual" className="w-full" />
+            <img src="/hero-ai.png" alt="AI automation visual" className="w-full" />
           </div>
         </motion.div>
       </div>

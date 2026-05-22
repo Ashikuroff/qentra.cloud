@@ -7,7 +7,7 @@ const slides = [
     title: 'AI Automation for Intelligent Operations',
     subtitle: 'Design intelligent agents, workflows, and copilots to automate business processes and surface insights.',
     cta: 'Explore AI Solutions',
-    img: '/hero-ai.svg',
+    img: '/hero-ai.png',
     bg: 'bg-[radial-gradient(600px_400px_at_10%_20%,rgba(14,231,255,0.04),transparent_12%),radial-gradient(400px_300px_at_90%_80%,rgba(102,16,242,0.03),transparent_18%)]'
   },
   {
@@ -15,7 +15,7 @@ const slides = [
     title: 'Cloud Automation & Platform Engineering',
     subtitle: 'Modernize platforms with Kubernetes, GitOps, IaC, and scalable CI/CD for multi-cloud environments.',
     cta: 'Modernize Your Infrastructure',
-    img: '/hero-cloud.svg',
+    img: '/hero-cloud.png',
     bg: 'bg-[linear-gradient(90deg,rgba(2,6,23,0.35),rgba(7,16,35,0.1))]'
   },
   {
@@ -23,7 +23,7 @@ const slides = [
     title: 'Security Automation & Intelligent Protection',
     subtitle: 'Automate threat detection, compliance, and remediation with AI-assisted security operations.',
     cta: 'Secure Your Platform',
-    img: '/hero-security.svg',
+    img: '/hero-security.png',
     bg: 'bg-[linear-gradient(90deg,rgba(6,7,15,0.45),rgba(2,8,20,0.08))]'
   }
 ]
@@ -47,7 +47,7 @@ export default function Hero() {
   }, [paused])
 
   return (
-    <section onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} className="relative min-h-screen flex items-center hero-slide" aria-label="Hero">
+    <section id="home" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} className="relative min-h-screen flex items-center hero-slide" aria-label="Hero">
       <div className={`absolute inset-0 z-0 ${slides[index].bg}`} />
       <img src="/logo-wordmark.svg" alt="" aria-hidden="true" className="hero-logo-large" />
       <div className="container relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">

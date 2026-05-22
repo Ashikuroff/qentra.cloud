@@ -7,7 +7,7 @@ export default function CloudSection() {
       <div className="container relative z-10 grid md:grid-cols-2 gap-8 items-center">
         <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="md:col-span-1 order-2 md:order-1">
           <div className="glass p-6 rounded-xl">
-            <img src="/hero-graphic.svg" alt="Cloud automation visual" className="w-full" />
+            <img src="/hero-cloud.png" alt="Cloud automation visual" className="w-full" />
           </div>
         </motion.div>
 
