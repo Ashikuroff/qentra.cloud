@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import Script from 'next/script'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -29,6 +30,17 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon-new.svg" />
       </Head>
       <Component {...pageProps} />
+
+      {/* ── Botpress Webchat ── */}
+      <Script
+        src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"
+        strategy="afterInteractive"
+      />
+      <Script
+        src="https://files.bpcontent.cloud/2026/05/22/07/20260522075304-O0MG9OMK.js"
+        strategy="afterInteractive"
+        defer
+      />
     </>
   )
 }
