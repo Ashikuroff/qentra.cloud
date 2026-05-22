@@ -3,6 +3,9 @@ import Header from '../src/components/Header'
 import Hero from '../src/components/Hero'
 import Services from '../src/components/Services'
 import Solutions from '../src/components/Solutions'
+import AISection from '../src/components/features/AISection'
+import CloudSection from '../src/components/features/CloudSection'
+import SecuritySection from '../src/components/features/SecuritySection'
 import TechStack from '../src/components/TechStack'
 import About from '../src/components/About'
 import WhyChoose from '../src/components/WhyChoose'
@@ -19,8 +22,17 @@ export default function Home() {
       <Header />
       <main className="container page-offset pt-24 pb-12 flex-1">
         <Hero />
+        {/* Feature slider sections */}
+        <section aria-hidden className="pt-6" />
+        <AISection />
+        <CloudSection />
+        <SecuritySection />
         <Services />
         <Solutions />
+        {/* Detailed feature sections */}
+        <div>
+          {/* Dynamically import detailed feature sections for clarity */}
+        </div>
         <TechStack />
         <About />
         <WhyChoose />
