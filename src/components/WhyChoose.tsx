@@ -1,9 +1,9 @@
 const POINTS = [
-  'Enterprise-grade security and reliability',
-  'Proven Kubernetes and platform engineering',
-  'AI-first automation with practical ROI',
-  'End-to-end delivery: design to run',
-  'Expert team with DevOps and ML experience'
+  'Model-Safety & Enterprise Data Isolation',
+  'GPU-Native Scalability & Platform Design',
+  'Agentic Systems with High Audited ROI',
+  'Production Observability & Cost Tracking',
+  'Elite Team of DevOps and AI Engineers'
 ]
 
 export default function WhyChoose() {

@@ -4,25 +4,25 @@ import { motion, AnimatePresence } from 'framer-motion'
 const slides = [
   {
     id: 'ai',
-    title: 'AI Automation for Intelligent Operations',
-    subtitle: 'Design intelligent agents, workflows, and copilots to automate business processes and surface insights.',
+    title: 'Cognitive AI Automation & Agentic Workflows',
+    subtitle: 'We design and deploy autonomous AI agents, multi-agent orchestrations, and secure RAG pipelines that automate complex operations and scale business intelligence.',
     cta: 'Explore AI Solutions',
     img: '/hero-ai.png',
     bg: 'bg-[radial-gradient(600px_400px_at_10%_20%,rgba(14,231,255,0.04),transparent_12%),radial-gradient(400px_300px_at_90%_80%,rgba(102,16,242,0.03),transparent_18%)]'
   },
   {
     id: 'cloud',
-    title: 'Cloud Automation & Platform Engineering',
-    subtitle: 'Modernize platforms with Kubernetes, GitOps, IaC, and scalable CI/CD for multi-cloud environments.',
-    cta: 'Modernize Your Infrastructure',
+    title: 'Enterprise Platform Engineering & GPU Orchestration',
+    subtitle: 'Accelerate training and model inference. We architect production-grade Kubernetes, custom GPU workloads, IaC, and robust GitOps delivery pipelines.',
+    cta: 'Modernize Your Platform',
     img: '/hero-cloud.png',
     bg: 'bg-[linear-gradient(90deg,rgba(2,6,23,0.35),rgba(7,16,35,0.1))]'
   },
   {
     id: 'security',
-    title: 'Security Automation & Intelligent Protection',
-    subtitle: 'Automate threat detection, compliance, and remediation with AI-assisted security operations.',
-    cta: 'Secure Your Platform',
+    title: 'Model Safety, Guardrails & Intelligent Cloud Security',
+    subtitle: 'Secure your models and infrastructure. We establish automated security scanning, data privacy guardrails, and real-time compliance operations.',
+    cta: 'Secure Your Infrastructure',
     img: '/hero-security.png',
     bg: 'bg-[linear-gradient(90deg,rgba(6,7,15,0.45),rgba(2,8,20,0.08))]'
   }
