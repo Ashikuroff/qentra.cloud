@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="120" viewBox="0 0 600 120" fill="none">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#0ee7ff" />
+      <stop offset="1" stop-color="#8b5cf6" />
+    </linearGradient>
+    <filter id="f" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="6" stdDeviation="18" flood-color="#0ee7ff" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+  <g filter="url(#f)">
+    <text x="20" y="78" font-family="Space Grotesk, Sora, Inter, sans-serif" font-weight="700" font-size="56" fill="url(#g)">Qentra.cloud</text>
+  </g>
+</svg>

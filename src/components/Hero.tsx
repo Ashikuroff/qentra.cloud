@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const slides = [
@@ -7,26 +7,30 @@ const slides = [
     title: 'AI Automation for Intelligent Operations',
     subtitle: 'Design intelligent agents, workflows, and copilots to automate business processes and surface insights.',
     cta: 'Explore AI Solutions',
-    img: '/hero-graphic.svg'
+    img: '/hero-graphic.svg',
+    bg: 'bg-[radial-gradient(600px_400px_at_10%_20%,rgba(14,231,255,0.04),transparent_12%),radial-gradient(400px_300px_at_90%_80%,rgba(102,16,242,0.03),transparent_18%)]'
   },
   {
     id: 'cloud',
     title: 'Cloud Automation & Platform Engineering',
     subtitle: 'Modernize platforms with Kubernetes, GitOps, IaC, and scalable CI/CD for multi-cloud environments.',
     cta: 'Modernize Your Infrastructure',
-    img: '/hero-graphic.svg'
+    img: '/hero-graphic.svg',
+    bg: 'bg-[linear-gradient(90deg,rgba(2,6,23,0.35),rgba(7,16,35,0.1))]'
   },
   {
     id: 'security',
     title: 'Security Automation & Intelligent Protection',
     subtitle: 'Automate threat detection, compliance, and remediation with AI-assisted security operations.',
     cta: 'Secure Your Platform',
-    img: '/hero-graphic.svg'
+    img: '/hero-graphic.svg',
+    bg: 'bg-[linear-gradient(90deg,rgba(6,7,15,0.45),rgba(2,8,20,0.08))]'
   }
 ]
 
 export default function Hero() {
   const [index, setIndex] = useState(0)
+  const [paused, setPaused] = useState(false)
 
   function next() {
     setIndex((i) => (i + 1) % slides.length)
@@ -35,13 +39,29 @@ export default function Hero() {
     setIndex((i) => (i - 1 + slides.length) % slides.length)
   }
 
+  // autoplay every 5s
+  useEffect(() => {
+    if (paused) return
+    const id = setInterval(() => setIndex((i) => (i + 1) % slides.length), 5000)
+    return () => clearInterval(id)
+  }, [paused])
+
   return (
-    <section className="relative min-h-screen flex items-center hero-slide" aria-label="Hero">
-      <div className="hero-bg" />
-      <img src="/logo-full.svg" alt="" aria-hidden="true" className="hero-logo-large" />
+    <section onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} className="relative min-h-screen flex items-center hero-slide" aria-label="Hero">
+      <div className={`absolute inset-0 z-0 ${slides[index].bg}`} />
+      <img src="/logo-wordmark.svg" alt="" aria-hidden="true" className="hero-logo-large" />
       <div className="container relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         <div className="md:col-span-7">
           <div className="inline-block px-3 py-1 rounded-full bg-white/3 text-sm text-electric font-medium">Enterprise • AI • Cloud</div>
+
+          {/* tabs */}
+          <div className="mt-4 flex gap-3">
+            {slides.map((s, i) => (
+              <button key={s.id} onClick={() => setIndex(i)} className={`px-3 py-1 rounded-md ${i === index ? 'bg-gradient-to-r from-electric to-cyan text-black' : 'bg-white/3 text-white/80'}`}>
+                {s.id.toUpperCase()}
+              </button>
+            ))}
+          </div>
 
           <div className="mt-6">
             <AnimatePresence mode="wait">
