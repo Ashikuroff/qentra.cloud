@@ -31,16 +31,16 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <Component {...pageProps} />
 
-      {/* ── Botpress Webchat ── */}
-      <Script
-        src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"
-        strategy="afterInteractive"
-      />
-      <Script
-        src="https://files.bpcontent.cloud/2026/05/22/07/20260522075304-O0MG9OMK.js"
-        strategy="afterInteractive"
-        defer
-      />
+      {/* ── AI Cloud Advisor (Botpress) ── */}
+<Script
+  src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"
+  strategy="afterInteractive"
+/>
+<Script
+  src="https://files.bpcontent.cloud/2026/05/23/16/20260523163642-DO1HQEMD.js"
+  strategy="afterInteractive"
+  defer
+/>
     </>
   )
 }
