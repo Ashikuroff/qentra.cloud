@@ -31,22 +31,22 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <Component {...pageProps} />
 
-      {/* ── AI Cloud Advisor (Botpress) ── */}
-<Script
-  src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"
-  strategy="afterInteractive"
-/>
-<Script
-  src="https://files.bpcontent.cloud/2026/05/23/16/20260523163642-DO1HQEMD.js"
-  strategy="afterInteractive"
-  defer
-/>
-      {/* Botpress configuration – set custom bot name */}
+      {/* AI Cloud Advisor Botpress */}
+      <Script
+        src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"
+        strategy="afterInteractive"
+        onLoad={() => {
+          (window as any).botpressWebChat?.init({ botName: 'Qentra AI Cloud Advisor' });
+        }}
+      />
       <Script
         id="botpress-config"
         strategy="afterInteractive"
-        dangerouslySetInnerHTML={{ __html: "window.botpressWebChat && window.botpressWebChat.init({ botName: 'Qentra AI Cloud Advisor' });" }}
+        dangerouslySetInnerHTML={{
+          __html: "window.botpressWebChat && window.botpressWebChat.init({ botName: 'Qentra AI Cloud Advisor' });"
+        }}
       />
+
     </>
   )
 }
