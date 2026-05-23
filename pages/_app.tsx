@@ -41,6 +41,12 @@ export default function App({ Component, pageProps }: AppProps) {
   strategy="afterInteractive"
   defer
 />
-    </>
+      {/* Botpress configuration – set custom bot name */}
+      <Script
+        id="botpress-config"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: "window.botpressWebChat && window.botpressWebChat.init({ botName: 'Qentra AI Cloud Advisor' });" }}
+      />
+
   )
 }
