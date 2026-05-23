@@ -36,58 +36,56 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     return res.status(400).json({ ok: false, message: 'Invalid email address' })
   }
 
-  // If SendGrid key is present, send email. Otherwise log to server console.
-  if (SENDGRID_API_KEY) {
-    try {
-      const payload = {
-        personalizations: [
-          {
-            to: [{ email: CONTACT_TO_EMAIL }],
-            subject: `Qentra.cloud contact from ${name}`
-          }
-        ],
-        from: { email: CONTACT_FROM_EMAIL, name: 'Qentra.cloud Website' },
-        reply_to: { email: String(email), name: String(name) },
-        content: [
-          {
-            type: 'text/plain',
-            value: `Name: ${name}\nEmail: ${email}\n\n${message}`
-          },
-          {
-            type: 'text/html',
-            value: `<p><strong>Name:</strong> ${escapeHtml(String(name))}</p><p><strong>Email:</strong> ${escapeHtml(
-              String(email)
-            )}</p><p>${escapeHtml(String(message)).replace(/\n/g, '<br/>')}</p>`
-          }
-        ]
-      }
-
-      await axios.post('https://api.sendgrid.com/v3/mail/send', payload, {
-        headers: {
-          Authorization: `Bearer ${SENDGRID_API_KEY}`,
-          'Content-Type': 'application/json'
-        }
-      })
-
-      return res.status(200).json({ ok: true, message: 'Message sent' })
-    } catch (error: any) {
-      // Log detailed SendGrid error for debugging
-      if (error?.response?.data) {
-        console.error('SendGrid response error:', JSON.stringify(error.response.data))
-      } else {
-        console.error('SendGrid error', error?.message || error)
-      }
-
-      // In non-production environments, return SendGrid error message to client for easier debugging
-      if (process.env.NODE_ENV !== 'production' && error?.response?.data) {
-        return res.status(500).json({ ok: false, message: JSON.stringify(error.response.data) })
-      }
-
-      return res.status(500).json({ ok: false, message: 'Failed to send message' })
-    }
+  if (!SENDGRID_API_KEY) {
+    const missingKeyMsg = 'SendGrid API key is not configured. Set SENDGRID_API_KEY in environment variables to enable email delivery.'
+    console.warn(missingKeyMsg, { CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL })
+    return res.status(500).json({ ok: false, message: missingKeyMsg })
   }
 
-  // Fallback — log the message for development
-  console.log('Contact request (logged):', { name, email, message })
-  return res.status(200).json({ ok: true, message: 'Message received (logged)' })
+  try {
+    const payload = {
+      personalizations: [
+        {
+          to: [{ email: CONTACT_TO_EMAIL }],
+          subject: `Qentra.cloud contact from ${name}`
+        }
+      ],
+      from: { email: CONTACT_FROM_EMAIL, name: 'Qentra.cloud Website' },
+      reply_to: { email: String(email), name: String(name) },
+      content: [
+        {
+          type: 'text/plain',
+          value: `Name: ${name}\nEmail: ${email}\n\n${message}`
+        },
+        {
+          type: 'text/html',
+          value: `<p><strong>Name:</strong> ${escapeHtml(String(name))}</p><p><strong>Email:</strong> ${escapeHtml(
+            String(email)
+          )}</p><p>${escapeHtml(String(message)).replace(/\n/g, '<br/>')}</p>`
+        }
+      ]
+    }
+
+    await axios.post('https://api.sendgrid.com/v3/mail/send', payload, {
+      headers: {
+        Authorization: `Bearer ${SENDGRID_API_KEY}`,
+        'Content-Type': 'application/json'
+      }
+    })
+
+    return res.status(200).json({ ok: true, message: 'Message sent' })
+  } catch (error: any) {
+    // Log detailed SendGrid error for debugging
+    if (error?.response?.data) {
+      console.error('SendGrid response error:', JSON.stringify(error.response.data))
+    } else {
+      console.error('SendGrid error', error?.message || error)
+    }
+
+    const errorMessage = error?.response?.data?.errors
+      ? JSON.stringify(error.response.data.errors)
+      : 'Failed to send message'
+
+    return res.status(500).json({ ok: false, message: errorMessage })
+  }
 }
