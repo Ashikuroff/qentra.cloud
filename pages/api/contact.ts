@@ -10,6 +10,15 @@ const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY
 const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'ashik9001@gmail.com'
 const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || 'noreply@qentra.cloud'
 
+function escapeHtml(unsafe: string) {
+  return unsafe
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   if (req.method !== 'POST') {
     return res.status(405).json({ ok: false, message: 'Method not allowed' })
@@ -19,6 +28,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   if (!name || !email || !message) {
     return res.status(400).json({ ok: false, message: 'Missing required fields' })
+  }
+
+  // Basic server-side email validation
+  const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/
+  if (!emailRegex.test(String(email))) {
+    return res.status(400).json({ ok: false, message: 'Invalid email address' })
   }
 
   // If SendGrid key is present, send email. Otherwise log to server console.
@@ -32,10 +47,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
           }
         ],
         from: { email: CONTACT_FROM_EMAIL, name: 'Qentra.cloud Website' },
+        reply_to: { email: String(email), name: String(name) },
         content: [
           {
             type: 'text/plain',
             value: `Name: ${name}\nEmail: ${email}\n\n${message}`
+          },
+          {
+            type: 'text/html',
+            value: `<p><strong>Name:</strong> ${escapeHtml(String(name))}</p><p><strong>Email:</strong> ${escapeHtml(
+              String(email)
+            )}</p><p>${escapeHtml(String(message)).replace(/\n/g, '<br/>')}</p>`
           }
         ]
       }
@@ -48,8 +70,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       })
 
       return res.status(200).json({ ok: true, message: 'Message sent' })
-    } catch (error) {
-      console.error('SendGrid error', error)
+    } catch (error: any) {
+      // Log detailed SendGrid error for debugging
+      if (error?.response?.data) {
+        console.error('SendGrid response error:', JSON.stringify(error.response.data))
+      } else {
+        console.error('SendGrid error', error?.message || error)
+      }
+
+      // In non-production environments, return SendGrid error message to client for easier debugging
+      if (process.env.NODE_ENV !== 'production' && error?.response?.data) {
+        return res.status(500).json({ ok: false, message: JSON.stringify(error.response.data) })
+      }
+
       return res.status(500).json({ ok: false, message: 'Failed to send message' })
     }
   }

@@ -6,6 +6,7 @@ export default function ContactForm() {
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+  const [serverMessage, setServerMessage] = useState<string | null>(null)
 
   function validate() {
     if (!name.trim() || !email.trim() || !message.trim()) return false
@@ -21,17 +22,23 @@ export default function ContactForm() {
       return
     }
     setStatus('sending')
+    setServerMessage(null)
     // prefer server SendGrid; if not configured, fallback to Formspree client submission
     try {
       const res = await axios.post('/api/contact', { name, email, message })
       if (res.data?.ok) {
         setStatus('success')
+        setServerMessage(res.data?.message || 'Message sent')
         setName('')
         setEmail('')
         setMessage('')
         return
       }
+      // surface server-provided message when available
+      if (res.data?.message) setServerMessage(String(res.data.message))
     } catch (err) {
+      const serverMsg = (err as any)?.response?.data?.message
+      if (serverMsg) setServerMessage(String(serverMsg))
       // continue to fallback
     }
 
@@ -42,12 +49,14 @@ export default function ContactForm() {
         const r = await axios.post(formspree, { name, email, message })
         if (r.status === 200 || r.status === 201) {
           setStatus('success')
+          setServerMessage('Message sent via Formspree')
           setName('')
           setEmail('')
           setMessage('')
           return
         }
       } catch (err) {
+        setServerMessage((err as any)?.response?.data?.message || 'Formspree submission failed')
         setStatus('error')
         return
       }
@@ -72,7 +81,7 @@ export default function ContactForm() {
       </div>
       <div className="md:col-span-2 flex items-center justify-between">
         <div className="text-sm text-white/80">
-          {status === 'success' ? 'Thanks — we will reply soon.' : status === 'error' ? 'Please check your inputs or try again.' : ''}
+          {status === 'success' ? serverMessage || 'Thanks — we will reply soon.' : status === 'error' ? serverMessage || 'Please check your inputs or try again.' : ''}
         </div>
         <button type="submit" disabled={status === 'sending'} className="px-5 py-2 rounded-md bg-gradient-to-r from-electric to-cyan text-black font-semibold">{status === 'sending' ? 'Sending...' : 'Send Message'}</button>
       </div>
