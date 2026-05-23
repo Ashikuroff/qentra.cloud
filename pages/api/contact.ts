@@ -9,6 +9,7 @@ type Data = {
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY
 const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'ashik9001@gmail.com'
 const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || 'noreply@qentra.cloud'
+const FORMSPREE_ENDPOINT = process.env.FORMSPREE_ENDPOINT || process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || ''
 
 function escapeHtml(unsafe: string) {
   return unsafe
@@ -38,7 +39,35 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   if (!SENDGRID_API_KEY) {
     const missingKeyMsg = 'SendGrid API key is not configured. Set SENDGRID_API_KEY in environment variables to enable email delivery.'
-    console.warn(missingKeyMsg, { CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL })
+    console.warn(missingKeyMsg, { CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL, FORMSPREE_ENDPOINT: Boolean(FORMSPREE_ENDPOINT) })
+
+    if (FORMSPREE_ENDPOINT) {
+      try {
+        const formspreePayload = {
+          name,
+          email,
+          message
+        }
+
+        const response = await axios.post(FORMSPREE_ENDPOINT, formspreePayload, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+
+        if (response.status === 200 || response.status === 201) {
+          return res.status(200).json({ ok: true, message: 'Message sent via Formspree' })
+        }
+
+        console.error('Formspree response status:', response.status, response.data)
+        return res.status(500).json({ ok: false, message: 'Formspree submission failed' })
+      } catch (error: any) {
+        console.error('Formspree error', error?.response?.data || error?.message || error)
+        const errorMessage = error?.response?.data?.error || error?.response?.data || 'Failed to send message via Formspree'
+        return res.status(500).json({ ok: false, message: String(errorMessage) })
+      }
+    }
+
     return res.status(500).json({ ok: false, message: missingKeyMsg })
   }
 
