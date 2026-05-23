@@ -47,6 +47,6 @@ export default function App({ Component, pageProps }: AppProps) {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: "window.botpressWebChat && window.botpressWebChat.init({ botName: 'Qentra AI Cloud Advisor' });" }}
       />
-
+    </>
   )
 }
