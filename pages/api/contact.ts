@@ -7,7 +7,7 @@ type Data = {
 }
 
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY
-const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'hello@qentra.cloud'
+const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'ashik9001@gmail.com'
 const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || 'noreply@qentra.cloud'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
