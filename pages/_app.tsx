@@ -28,6 +28,20 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="twitter:image" content={`${process.env.SITE_URL || 'https://qentra.cloud'}/og-image-new.svg`} />
         <meta name="theme-color" content="#061028" />
         <link rel="icon" href="/favicon-new.svg" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'Qentra.cloud',
+              url: 'https://qentra.cloud',
+              logo: 'https://qentra.cloud/logo-mark.svg',
+              description: 'AI Automation & Cloud Engineering for modern businesses.',
+              sameAs: ['https://github.com/Ashikuroff/qentra.cloud']
+            })
+          }}
+        />
       </Head>
       <Component {...pageProps} />
 
