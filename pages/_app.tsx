@@ -50,7 +50,7 @@ export default function App({ Component, pageProps }: AppProps) {
         id="botpress-preinit"
         strategy="beforeInteractive"
         dangerouslySetInnerHTML={{
-          __html: "window.botpressWebChat = { botName: 'Qentra AI Cloud Advisor' };"
+          __html: "window.botpressWebChat = { botId: '20260523163642-DO1HQEMD', clientId: '20260523163642-DO1HQEMD', botName: 'Qentra AI Cloud Advisor' };"
         }}
       />
       <Script
