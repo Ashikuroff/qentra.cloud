@@ -21,7 +21,13 @@ export default function Header() {
         </nav>
 
         <div className="md:hidden">
-          <button aria-label="Open menu" onClick={() => setIsOpen(true)} className="bg-white/6 p-2 rounded-md hover:bg-white/10 transition">
+          <button
+            aria-label="Open menu"
+            aria-expanded={false}
+            aria-controls="mobile-menu"
+            onClick={() => setIsOpen(true)}
+            className="bg-white/6 p-2 rounded-md hover:bg-white/10 transition"
+          >
             ☰
           </button>
         </div>
@@ -29,7 +35,7 @@ export default function Header() {
       </header>
       {/* Mobile menu overlay */}
       {isOpen && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex flex-col items-center justify-center z-50">
+        <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu" className="fixed inset-0 bg-black/70 backdrop-blur-sm flex flex-col items-center justify-center z-50">
           <button
             aria-label="Close menu"
             onClick={() => setIsOpen(false)}

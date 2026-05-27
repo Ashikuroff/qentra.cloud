@@ -1,15 +1,26 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import axios from 'axios'
 
 type Data = {
   ok: boolean
   message?: string
 }
 
-const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY
-const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'ashik9001@gmail.com'
-const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || 'noreply@qentra.cloud'
-const FORMSPREE_ENDPOINT = process.env.FORMSPREE_ENDPOINT || process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || ''
+// Simple in-memory rate limiter: max 5 requests per IP per 60s window
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
+const RATE_LIMIT = 5
+const RATE_WINDOW_MS = 60_000
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now()
+  const entry = rateLimitMap.get(ip)
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS })
+    return false
+  }
+  if (entry.count >= RATE_LIMIT) return true
+  entry.count++
+  return false
+}
 
 function escapeHtml(unsafe: string) {
   return unsafe
@@ -25,50 +36,56 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     return res.status(405).json({ ok: false, message: 'Method not allowed' })
   }
 
+  const ip = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.socket.remoteAddress || 'unknown'
+  if (isRateLimited(ip)) {
+    return res.status(429).json({ ok: false, message: 'Too many requests. Please wait a moment and try again.' })
+  }
+
   const { name, email, message } = req.body || {}
 
   if (!name || !email || !message) {
     return res.status(400).json({ ok: false, message: 'Missing required fields' })
   }
 
-  // Basic server-side email validation
   const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/
   if (!emailRegex.test(String(email))) {
     return res.status(400).json({ ok: false, message: 'Invalid email address' })
   }
 
+  const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY
+  const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL
+  const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL
+  const FORMSPREE_ENDPOINT = process.env.FORMSPREE_ENDPOINT || process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || ''
+
   if (!SENDGRID_API_KEY) {
-    const missingKeyMsg = 'SendGrid API key is not configured. Set SENDGRID_API_KEY in environment variables to enable email delivery.'
-    console.warn(missingKeyMsg, { CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL, FORMSPREE_ENDPOINT: Boolean(FORMSPREE_ENDPOINT) })
-
-    if (FORMSPREE_ENDPOINT) {
-      try {
-        const formspreePayload = {
-          name,
-          email,
-          message
-        }
-
-        const response = await axios.post(FORMSPREE_ENDPOINT, formspreePayload, {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-
-        if (response.status === 200 || response.status === 201) {
-          return res.status(200).json({ ok: true, message: 'Message sent via Formspree' })
-        }
-
-        console.error('Formspree response status:', response.status, response.data)
-        return res.status(500).json({ ok: false, message: 'Formspree submission failed' })
-      } catch (error: any) {
-        console.error('Formspree error', error?.response?.data || error?.message || error)
-        const errorMessage = error?.response?.data?.error || error?.response?.data || 'Failed to send message via Formspree'
-        return res.status(500).json({ ok: false, message: String(errorMessage) })
-      }
+    if (!FORMSPREE_ENDPOINT) {
+      console.error('Contact form: neither SENDGRID_API_KEY nor FORMSPREE_ENDPOINT is configured.')
+      return res.status(500).json({ ok: false, message: 'Contact form is not configured. Please reach out directly.' })
     }
 
-    return res.status(500).json({ ok: false, message: missingKeyMsg })
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message })
+      })
+
+      if (response.ok) {
+        return res.status(200).json({ ok: true, message: 'Message sent' })
+      }
+
+      const data = await response.json().catch(() => ({}))
+      console.error('Formspree error:', response.status, data)
+      return res.status(500).json({ ok: false, message: 'Failed to send message. Please try again.' })
+    } catch (error) {
+      console.error('Formspree fetch error:', error)
+      return res.status(500).json({ ok: false, message: 'Failed to send message. Please try again.' })
+    }
+  }
+
+  if (!CONTACT_TO_EMAIL || !CONTACT_FROM_EMAIL) {
+    console.error('Contact form: CONTACT_TO_EMAIL or CONTACT_FROM_EMAIL is not configured.')
+    return res.status(500).json({ ok: false, message: 'Contact form is not configured. Please reach out directly.' })
   }
 
   try {
@@ -88,33 +105,29 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         },
         {
           type: 'text/html',
-          value: `<p><strong>Name:</strong> ${escapeHtml(String(name))}</p><p><strong>Email:</strong> ${escapeHtml(
-            String(email)
-          )}</p><p>${escapeHtml(String(message)).replace(/\n/g, '<br/>')}</p>`
+          value: `<p><strong>Name:</strong> ${escapeHtml(String(name))}</p><p><strong>Email:</strong> ${escapeHtml(String(email))}</p><p>${escapeHtml(String(message)).replace(/\n/g, '<br/>')}</p>`
         }
       ]
     }
 
-    await axios.post('https://api.sendgrid.com/v3/mail/send', payload, {
+    const sgRes = await fetch('https://api.sendgrid.com/v3/mail/send', {
+      method: 'POST',
       headers: {
         Authorization: `Bearer ${SENDGRID_API_KEY}`,
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify(payload)
     })
 
-    return res.status(200).json({ ok: true, message: 'Message sent' })
-  } catch (error: any) {
-    // Log detailed SendGrid error for debugging
-    if (error?.response?.data) {
-      console.error('SendGrid response error:', JSON.stringify(error.response.data))
-    } else {
-      console.error('SendGrid error', error?.message || error)
+    if (sgRes.ok) {
+      return res.status(200).json({ ok: true, message: 'Message sent' })
     }
 
-    const errorMessage = error?.response?.data?.errors
-      ? JSON.stringify(error.response.data.errors)
-      : 'Failed to send message'
-
-    return res.status(500).json({ ok: false, message: errorMessage })
+    const errData = await sgRes.json().catch(() => ({}))
+    console.error('SendGrid error:', sgRes.status, JSON.stringify(errData))
+    return res.status(500).json({ ok: false, message: 'Failed to send message. Please try again.' })
+  } catch (error) {
+    console.error('SendGrid fetch error:', error)
+    return res.status(500).json({ ok: false, message: 'Failed to send message. Please try again.' })
   }
 }

@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  reactStrictMode: true
+  reactStrictMode: true,
+  images: {
+    domains: [],
+    // All hero images are local (public/), no external domains needed
+    formats: ['image/webp', 'image/avif']
+  }
 }
