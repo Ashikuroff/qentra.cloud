@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import axios from 'axios'
 
 export default function ContactForm() {
   const [name, setName] = useState('')
@@ -10,59 +9,41 @@ export default function ContactForm() {
 
   function validate() {
     if (!name.trim() || !email.trim() || !message.trim()) return false
-    // simple email regex
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return false
     return true
   }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+    if (status === 'sending') return
     if (!validate()) {
       setStatus('error')
+      setServerMessage('Please fill in all fields with a valid email.')
       return
     }
     setStatus('sending')
     setServerMessage(null)
-    // prefer server SendGrid; if not configured, fallback to Formspree client submission
     try {
-      const res = await axios.post('/api/contact', { name, email, message })
-      if (res.data?.ok) {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message })
+      })
+      const data = await res.json()
+      if (data?.ok) {
         setStatus('success')
-        setServerMessage(res.data?.message || 'Message sent')
+        setServerMessage(data.message || 'Thanks — we will reply soon.')
         setName('')
         setEmail('')
         setMessage('')
         return
       }
-      // surface server-provided message when available
-      if (res.data?.message) setServerMessage(String(res.data.message))
-    } catch (err) {
-      const serverMsg = (err as any)?.response?.data?.message
-      if (serverMsg) setServerMessage(String(serverMsg))
-      // continue to fallback
+      setStatus('error')
+      setServerMessage(data?.message || 'Something went wrong. Please try again.')
+    } catch {
+      setStatus('error')
+      setServerMessage('Network error. Please check your connection and try again.')
     }
-
-    // Fallback to Formspree if NEXT_PUBLIC_FORMSPREE_ENDPOINT is set
-    const formspree = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT
-    if (formspree) {
-      try {
-        const r = await axios.post(formspree, { name, email, message })
-        if (r.status === 200 || r.status === 201) {
-          setStatus('success')
-          setServerMessage('Message sent via Formspree')
-          setName('')
-          setEmail('')
-          setMessage('')
-          return
-        }
-      } catch (err) {
-        setServerMessage((err as any)?.response?.data?.message || 'Formspree submission failed')
-        setStatus('error')
-        return
-      }
-    }
-
-    setStatus('error')
   }
 
   return (

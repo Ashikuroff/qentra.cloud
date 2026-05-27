@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const slides = [
@@ -32,14 +33,9 @@ export default function Hero() {
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
 
-  function next() {
-    setIndex((i) => (i + 1) % slides.length)
-  }
-  function prev() {
-    setIndex((i) => (i - 1 + slides.length) % slides.length)
-  }
+  function next() { setIndex((i) => (i + 1) % slides.length) }
+  function prev() { setIndex((i) => (i - 1 + slides.length) % slides.length) }
 
-  // autoplay every 5s
   useEffect(() => {
     if (paused) return
     const id = setInterval(() => setIndex((i) => (i + 1) % slides.length), 5000)
@@ -47,17 +43,28 @@ export default function Hero() {
   }, [paused])
 
   return (
-    <section id="home" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} className="relative min-h-screen flex items-center hero-slide" aria-label="Hero">
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center hero-slide"
+      aria-label="Hero"
+      aria-roledescription="carousel"
+    >
       <div className={`absolute inset-0 z-0 ${slides[index].bg}`} />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src="/logo-wordmark.svg" alt="" aria-hidden="true" className="hero-logo-large" />
       <div className="container relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         <div className="md:col-span-7">
           <div className="inline-block px-3 py-1 rounded-full bg-white/3 text-sm text-electric font-medium">Enterprise • AI • Cloud</div>
 
-          {/* tabs */}
           <div className="mt-4 flex gap-3">
             {slides.map((s, i) => (
-              <button key={s.id} onClick={() => setIndex(i)} className={`px-3 py-1 rounded-md ${i === index ? 'bg-gradient-to-r from-electric to-cyan text-black' : 'bg-white/3 text-white/80'}`}>
+              <button
+                key={s.id}
+                onClick={() => setIndex(i)}
+                aria-label={`Show ${s.id} slide`}
+                aria-pressed={i === index}
+                className={`px-3 py-1 rounded-md ${i === index ? 'bg-gradient-to-r from-electric to-cyan text-black' : 'bg-white/3 text-white/80'}`}
+              >
                 {s.id.toUpperCase()}
               </button>
             ))}
@@ -65,7 +72,16 @@ export default function Hero() {
 
           <div className="mt-6">
             <AnimatePresence mode="wait">
-              <motion.div key={slides[index].id} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.6 }}>
+              <motion.div
+                key={slides[index].id}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.6 }}
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`${index + 1} of ${slides.length}: ${slides[index].title}`}
+              >
                 <h2 className="text-3xl md:text-5xl font-heading font-extrabold leading-tight">{slides[index].title}</h2>
                 <p className="mt-4 text-lg text-white/80 max-w-2xl">{slides[index].subtitle}</p>
                 <div className="mt-6 flex gap-4">
@@ -76,21 +92,50 @@ export default function Hero() {
             </AnimatePresence>
 
             <div className="mt-8 flex items-center gap-3 slider-controls">
-              <button onClick={prev} aria-label="Previous" className="mr-2">‹</button>
-              <div className="flex gap-2">
+              <button onClick={prev} aria-label="Previous slide" className="mr-2">‹</button>
+              <div className="flex gap-2" role="tablist" aria-label="Slide indicators">
                 {slides.map((s, i) => (
-                  <button key={s.id} onClick={() => setIndex(i)} className={`w-3 h-3 rounded-full ${i === index ? 'bg-electric' : 'bg-white/20'}`} aria-label={`Go to ${s.id}`} />
+                  <button
+                    key={s.id}
+                    role="tab"
+                    aria-selected={i === index}
+                    onClick={() => setIndex(i)}
+                    className={`w-3 h-3 rounded-full ${i === index ? 'bg-electric' : 'bg-white/20'}`}
+                    aria-label={`Go to ${s.id} slide`}
+                  />
                 ))}
               </div>
-              <button onClick={next} aria-label="Next" className="ml-4">›</button>
+              <button onClick={next} aria-label="Next slide" className="ml-4">›</button>
+              <button
+                onClick={() => setPaused((p) => !p)}
+                aria-label={paused ? 'Resume auto-play' : 'Pause auto-play'}
+                aria-pressed={paused}
+                className="ml-2 text-white/50 hover:text-white/80 transition text-xs"
+              >
+                {paused ? '▶' : '⏸'}
+              </button>
             </div>
           </div>
         </div>
 
         <div className="md:col-span-5 flex items-center justify-center">
           <AnimatePresence mode="wait">
-            <motion.div key={slides[index].id} initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.98 }} transition={{ duration: 0.6 }} className="glass p-6 rounded-xl w-full max-w-lg shadow-glow-md">
-              <img src={slides[index].img} alt="Illustration" className="hero-visual w-full" />
+            <motion.div
+              key={slides[index].id}
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.6 }}
+              className="glass p-6 rounded-xl w-full max-w-lg shadow-glow-md"
+            >
+              <Image
+                src={slides[index].img}
+                alt={slides[index].title}
+                width={600}
+                height={400}
+                className="hero-visual w-full"
+                priority={index === 0}
+              />
             </motion.div>
           </AnimatePresence>
         </div>

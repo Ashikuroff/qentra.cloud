@@ -46,22 +46,28 @@ export default function App({ Component, pageProps }: AppProps) {
       <Component {...pageProps} />
 
       {/* AI Cloud Advisor Botpress */}
-      <Script
-        id="botpress-preinit"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: "window.botpressWebChat = { botId: '20260523163642-DO1HQEMD', clientId: '20260523163642-DO1HQEMD', botName: 'Qentra AI Cloud Advisor' };"
-        }}
-      />
-      <Script
-        src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"
-        strategy="afterInteractive"
-      />
-      <Script
-        src="https://files.bpcontent.cloud/2026/05/23/16/20260523163642-DO1HQEMD.js"
-        strategy="afterInteractive"
-        defer
-      />
+      {process.env.NEXT_PUBLIC_BOTPRESS_BOT_ID && (
+        <>
+          <Script
+            id="botpress-preinit"
+            strategy="beforeInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `window.botpressWebChat = { botId: '${process.env.NEXT_PUBLIC_BOTPRESS_BOT_ID}', clientId: '${process.env.NEXT_PUBLIC_BOTPRESS_CLIENT_ID || process.env.NEXT_PUBLIC_BOTPRESS_BOT_ID}', botName: 'Qentra AI Cloud Advisor' };`
+            }}
+          />
+          <Script
+            src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"
+            strategy="afterInteractive"
+          />
+          {process.env.NEXT_PUBLIC_BOTPRESS_SCRIPT_URL && (
+            <Script
+              src={process.env.NEXT_PUBLIC_BOTPRESS_SCRIPT_URL}
+              strategy="afterInteractive"
+              defer
+            />
+          )}
+        </>
+      )}
 
     </>
   )

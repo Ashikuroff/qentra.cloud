@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 export default function AISection() {
@@ -21,7 +22,7 @@ export default function AISection() {
 
         <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="md:col-span-1">
           <div className="glass p-6 rounded-xl shadow-glow-md">
-            <img src="/hero-ai.png" alt="AI automation visual" className="w-full" />
+            <Image src="/hero-ai.png" alt="Cognitive AI Automation and Agentic Workflows illustration" width={600} height={400} className="w-full" />
           </div>
         </motion.div>
       </div>

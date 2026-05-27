@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 export default function SecuritySection() {
@@ -21,7 +22,7 @@ export default function SecuritySection() {
 
         <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="md:col-span-1">
           <div className="glass p-6 rounded-xl">
-            <img src="/hero-security.png" alt="Security visual" className="w-full" />
+            <Image src="/hero-security.png" alt="AI Safety and Cloud Security illustration" width={600} height={400} className="w-full" />
           </div>
         </motion.div>
       </div>
