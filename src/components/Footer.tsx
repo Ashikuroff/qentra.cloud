@@ -7,12 +7,12 @@ export default function Footer() {
           <div className="text-sm text-white/70 mt-1">AI automation, cloud engineering, Kubernetes consulting, and DevSecOps delivery.</div>
         </div>
         <nav aria-label="Footer" className="flex flex-wrap items-center justify-center gap-4 text-sm text-white/70">
-          <a href="#services" className="hover:text-white transition">Services</a>
-          <a href="#solutions" className="hover:text-white transition">Solutions</a>
-          <a href="#tech" className="hover:text-white transition">Technology</a>
-          <a href="#about" className="hover:text-white transition">About</a>
-          <a href="#faq" className="hover:text-white transition">FAQ</a>
-          <a href="#contact" className="hover:text-white transition">Contact</a>
+          <a href="/ai-automation" className="hover:text-white transition">AI Automation</a>
+          <a href="/cloud-engineering" className="hover:text-white transition">Cloud Engineering</a>
+          <a href="/cloud-security" className="hover:text-white transition">Cloud Security</a>
+          <a href="/#about" className="hover:text-white transition">About</a>
+          <a href="/#faq" className="hover:text-white transition">FAQ</a>
+          <a href="/#contact" className="hover:text-white transition">Contact</a>
         </nav>
       </div>
     </footer>

@@ -8,17 +8,18 @@ export default function Sitemap() {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  const pages = ['']
+  const pages = ['', 'ai-automation', 'cloud-engineering', 'cloud-security']
   const lastModified = new Date().toISOString()
 
   const urls = pages
     .map((p) => {
       const path = p === '' ? '' : `/${p}`
+      const priority = p === '' ? '1.0' : '0.8'
       return `  <url>
     <loc>${SITE_URL}${path}</loc>
     <lastmod>${lastModified}</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>${priority}</priority>
   </url>`
     })
     .join('\n')
