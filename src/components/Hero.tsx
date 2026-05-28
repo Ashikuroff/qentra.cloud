@@ -54,29 +54,37 @@ export default function Hero() {
       <img src="/logo-wordmark.svg" alt="" aria-hidden="true" className="hero-logo-large" />
       <div className="container relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         <div className="md:col-span-7">
-          <div className="inline-block px-3 py-1 rounded-full bg-white/3 text-sm text-electric font-medium">AI Automation • Cloud Engineering • Kubernetes</div>
+          <div className="hero-eyebrow">
+            <span className="hero-eyebrow-dot" />
+            AI Automation • Platform Engineering • Cloud Security
+          </div>
 
-          <div className="mt-4 flex gap-3">
+          <div className="mt-5 flex gap-3 flex-wrap">
             {slides.map((s, i) => (
               <button
                 key={s.id}
                 onClick={() => setIndex(i)}
                 aria-label={`Show ${s.id} slide`}
                 aria-pressed={i === index}
-                className={`px-3 py-1 rounded-md ${i === index ? 'bg-gradient-to-r from-electric to-cyan text-black' : 'bg-white/3 text-white/80'}`}
+                className={`hero-tab ${i === index ? 'hero-tab-active' : 'hero-tab-idle'}`}
               >
                 {s.id.toUpperCase()}
               </button>
             ))}
           </div>
 
-          <div className="mt-6">
-            <h1 className="text-4xl md:text-6xl font-heading font-extrabold leading-tight max-w-4xl">
+          <div className="mt-7">
+            <h1 className="text-4xl md:text-6xl font-heading font-extrabold leading-[1.05] max-w-4xl">
               AI automation, cloud engineering, and Kubernetes consulting for production teams.
             </h1>
-            <p className="mt-4 text-lg text-white/80 max-w-3xl">
+            <p className="mt-5 text-lg text-white/80 max-w-3xl">
               Qentra.cloud helps companies design AI agents, modernize cloud platforms, automate DevOps workflows, and secure high-scale infrastructure with practical engineering delivery.
             </p>
+            <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-white/70">
+              <span className="hero-stat">Production-focused delivery</span>
+              <span className="hero-stat">5-second rotating service focus</span>
+              <span className="hero-stat">Platform, AI, and security coverage</span>
+            </div>
             <AnimatePresence mode="wait">
               <motion.div
                 key={slides[index].id}
@@ -87,11 +95,16 @@ export default function Hero() {
                 role="group"
                 aria-roledescription="slide"
                 aria-label={`${index + 1} of ${slides.length}: ${slides[index].title}`}
-                className="mt-8"
+                className="mt-8 hero-focus-card"
               >
-                <h2 className="text-2xl md:text-4xl font-heading font-extrabold leading-tight">{slides[index].title}</h2>
+                <div className="hero-focus-meta">
+                  <span>Focus Area</span>
+                  <span>{String(index + 1).padStart(2, '0')} / {slides.length.toString().padStart(2, '0')}</span>
+                  <span>Auto-rotates every 5 seconds</span>
+                </div>
+                <h2 className="mt-4 text-2xl md:text-4xl font-heading font-extrabold leading-tight">{slides[index].title}</h2>
                 <p className="mt-4 text-lg text-white/80 max-w-2xl">{slides[index].subtitle}</p>
-                <div className="mt-6 flex gap-4">
+                <div className="mt-6 flex flex-wrap gap-4">
                   <a
                     href={
                       slides[index].id === 'ai'
@@ -120,7 +133,7 @@ export default function Hero() {
               </motion.div>
             </AnimatePresence>
 
-            <div className="mt-8 flex items-center gap-3 slider-controls">
+            <div className="mt-8 flex items-center gap-3 slider-controls flex-wrap">
               <button onClick={prev} aria-label="Previous slide" className="mr-2">‹</button>
               <div className="flex gap-2" role="tablist" aria-label="Slide indicators">
                 {slides.map((s, i) => (
@@ -135,6 +148,7 @@ export default function Hero() {
                 ))}
               </div>
               <button onClick={next} aria-label="Next slide" className="ml-4">›</button>
+              <div className="hero-interval-label">5s interval</div>
               <button
                 onClick={() => setPaused((p) => !p)}
                 aria-label={paused ? 'Resume auto-play' : 'Pause auto-play'}

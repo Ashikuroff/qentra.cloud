@@ -63,13 +63,6 @@ export default function App({ Component, pageProps }: AppProps) {
 
       {/* AI Cloud Advisor Botpress */}
       <Script
-        id="botpress-preinit"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: "window.botpressWebChat = { botId: '20260523163642-DO1HQEMD', clientId: '20260523163642-DO1HQEMD', botName: 'Qentra AI Cloud Advisor' };"
-        }}
-      />
-      <Script
         src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"
         strategy="afterInteractive"
       />
