@@ -92,8 +92,30 @@ export default function Hero() {
                 <h2 className="text-2xl md:text-4xl font-heading font-extrabold leading-tight">{slides[index].title}</h2>
                 <p className="mt-4 text-lg text-white/80 max-w-2xl">{slides[index].subtitle}</p>
                 <div className="mt-6 flex gap-4">
-                  <a href="#contact" className="inline-block px-6 py-3 rounded-md bg-gradient-to-r from-electric to-cyan text-black font-semibold">{slides[index].cta}</a>
-                  <a href="#services" className="inline-block px-6 py-3 rounded-md border border-white/10 text-white/90">Our Services</a>
+                  <a
+                    href={
+                      slides[index].id === 'ai'
+                        ? '/ai-automation'
+                        : slides[index].id === 'cloud'
+                          ? '/platform-engineering'
+                          : '/cloud-security'
+                    }
+                    className="inline-block px-6 py-3 rounded-md bg-gradient-to-r from-electric to-cyan text-black font-semibold"
+                  >
+                    {slides[index].cta}
+                  </a>
+                  <a
+                    href={
+                      slides[index].id === 'ai'
+                        ? '/agentic-ai-workflows'
+                        : slides[index].id === 'cloud'
+                          ? '/gpu-kubernetes'
+                          : '/ai-security-guardrails'
+                    }
+                    className="inline-block px-6 py-3 rounded-md border border-white/10 text-white/90"
+                  >
+                    Learn More
+                  </a>
                 </div>
               </motion.div>
             </AnimatePresence>

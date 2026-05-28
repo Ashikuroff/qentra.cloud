@@ -14,7 +14,7 @@ export default function Header() {
         <nav className="hidden md:flex gap-8 items-center text-sm text-white/80">
           <Link href="/" className="hover:text-white transition">Home</Link>
           <Link href="/ai-automation" className="hover:text-white transition">AI Automation</Link>
-          <Link href="/cloud-engineering" className="hover:text-white transition">Cloud Engineering</Link>
+          <Link href="/platform-engineering" className="hover:text-white transition">Platform Engineering</Link>
           <Link href="/cloud-security" className="hover:text-white transition">Cloud Security</Link>
           <a href="/#about" className="hover:text-white transition">About</a>
           <a href="/#contact" className="ml-4 inline-block px-4 py-2 rounded-md bg-gradient-to-r from-electric to-cyan text-black font-semibold">Contact</a>
@@ -46,7 +46,7 @@ export default function Header() {
           <nav className="flex flex-col gap-6 text-white text-xl text-center">
             <Link href="/" onClick={() => setIsOpen(false)} className="hover:underline">Home</Link>
             <Link href="/ai-automation" onClick={() => setIsOpen(false)} className="hover:underline">AI Automation</Link>
-            <Link href="/cloud-engineering" onClick={() => setIsOpen(false)} className="hover:underline">Cloud Engineering</Link>
+            <Link href="/platform-engineering" onClick={() => setIsOpen(false)} className="hover:underline">Platform Engineering</Link>
             <Link href="/cloud-security" onClick={() => setIsOpen(false)} className="hover:underline">Cloud Security</Link>
             <a href="/#about" onClick={() => setIsOpen(false)} className="hover:underline">About</a>
             <a href="/#contact" onClick={() => setIsOpen(false)} className="hover:underline">Contact</a>

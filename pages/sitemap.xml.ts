@@ -8,7 +8,15 @@ export default function Sitemap() {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  const pages = ['', 'ai-automation', 'cloud-engineering', 'cloud-security']
+  const pages = [
+    '',
+    'ai-automation',
+    'agentic-ai-workflows',
+    'platform-engineering',
+    'gpu-kubernetes',
+    'cloud-security',
+    'ai-security-guardrails'
+  ]
   const lastModified = new Date().toISOString()
 
   const urls = pages
