@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 const slides = [
   {
     id: 'ai',
+    label: 'AI Automation',
     title: 'AI Automation Services for Agentic Workflows and Secure RAG',
     subtitle: 'We design and deploy AI automation systems, autonomous agents, and secure retrieval pipelines that reduce manual work and bring production-ready intelligence into business operations.',
     cta: 'Explore AI Automation',
@@ -13,14 +14,16 @@ const slides = [
   },
   {
     id: 'cloud',
-    title: 'Cloud Engineering and Kubernetes Consulting for Production Platforms',
-    subtitle: 'We build production-grade Kubernetes platforms, GPU-ready cloud infrastructure, Infrastructure as Code, and GitOps delivery pipelines for teams that need reliability at scale.',
+    label: 'Platform Engineering',
+    title: 'Platform Engineering and Kubernetes Consulting for Production Teams',
+    subtitle: 'We build production-grade Kubernetes platforms, GPU-ready infrastructure, Infrastructure as Code, and GitOps delivery pipelines for teams that need reliability at scale.',
     cta: 'Modernize Your Platform',
     img: '/hero-cloud.png',
     bg: 'bg-[linear-gradient(90deg,rgba(2,6,23,0.35),rgba(7,16,35,0.1))]'
   },
   {
     id: 'security',
+    label: 'Cloud Security',
     title: 'Cloud Security, DevSecOps and AI Guardrails',
     subtitle: 'We help teams secure AI applications and cloud infrastructure with DevSecOps automation, data protection guardrails, and continuous compliance controls.',
     cta: 'Secure Your Infrastructure',
@@ -68,7 +71,7 @@ export default function Hero() {
                 aria-pressed={i === index}
                 className={`hero-tab ${i === index ? 'hero-tab-active' : 'hero-tab-idle'}`}
               >
-                {s.id.toUpperCase()}
+                {s.label}
               </button>
             ))}
           </div>
@@ -81,9 +84,9 @@ export default function Hero() {
               Qentra.cloud helps companies design AI agents, modernize cloud platforms, automate DevOps workflows, and secure high-scale infrastructure with practical engineering delivery.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-white/70">
-              <span className="hero-stat">Production-focused delivery</span>
-              <span className="hero-stat">5-second rotating service focus</span>
-              <span className="hero-stat">Platform, AI, and security coverage</span>
+              <span className="hero-stat">Production delivery</span>
+              <span className="hero-stat">Platform modernization</span>
+              <span className="hero-stat">Security by design</span>
             </div>
             <AnimatePresence mode="wait">
               <motion.div
@@ -97,11 +100,7 @@ export default function Hero() {
                 aria-label={`${index + 1} of ${slides.length}: ${slides[index].title}`}
                 className="mt-8 hero-focus-card"
               >
-                <div className="hero-focus-meta">
-                  <span>Focus Area</span>
-                  <span>{String(index + 1).padStart(2, '0')} / {slides.length.toString().padStart(2, '0')}</span>
-                  <span>Auto-rotates every 5 seconds</span>
-                </div>
+                <div className="hero-focus-label">{slides[index].label}</div>
                 <h2 className="mt-4 text-2xl md:text-4xl font-heading font-extrabold leading-tight">{slides[index].title}</h2>
                 <p className="mt-4 text-lg text-white/80 max-w-2xl">{slides[index].subtitle}</p>
                 <div className="mt-6 flex flex-wrap gap-4">
@@ -148,7 +147,6 @@ export default function Hero() {
                 ))}
               </div>
               <button onClick={next} aria-label="Next slide" className="ml-4">›</button>
-              <div className="hero-interval-label">5s interval</div>
               <button
                 onClick={() => setPaused((p) => !p)}
                 aria-label={paused ? 'Resume auto-play' : 'Pause auto-play'}
