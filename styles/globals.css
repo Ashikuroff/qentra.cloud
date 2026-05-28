@@ -81,6 +81,7 @@ body {
   font-size: clamp(2.65rem, 5vw, 4.9rem);
   line-height: 1.03;
   font-weight: 800;
+  min-height: 10rem;
 }
 
 .hero-lede {
@@ -106,11 +107,11 @@ body {
   width: min(100%, 34rem);
   margin-top: -1.75rem;
   margin-right: -1.25rem;
-  padding: 1.15rem;
+  padding: 1rem;
   border-radius: 1.5rem;
-  background: linear-gradient(145deg, rgba(255,255,255,0.075), rgba(255,255,255,0.018));
-  border: 1px solid rgba(255,255,255,0.075);
-  box-shadow: 0 30px 80px rgba(1,6,17,0.46), 0 0 42px rgba(14,231,255,0.08);
+  background: linear-gradient(145deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012));
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 30px 80px rgba(1,6,17,0.42), 0 0 42px rgba(14,231,255,0.06);
   overflow: hidden;
 }
 
@@ -125,29 +126,14 @@ body {
 .hero-visual-stage .hero-visual {
   position: relative;
   z-index: 1;
-  transform: translate3d(0.75rem, -0.65rem, 0) scale(1.08);
+  transform: translate3d(0.9rem, -0.8rem, 0) scale(1.1);
   filter: drop-shadow(0 22px 32px rgba(0,0,0,0.36));
 }
 
-.hero-visual-caption {
-  position: relative;
-  z-index: 2;
+.hero-actions {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-wrap: wrap;
   gap: 1rem;
-  margin-top: 0.75rem;
-  padding: 0.9rem 1rem;
-  border-radius: 0.9rem;
-  background: rgba(2,6,23,0.62);
-  border: 1px solid rgba(255,255,255,0.07);
-  color: rgba(255,255,255,0.78);
-  font-size: 0.82rem;
-}
-
-.hero-visual-caption strong {
-  color: #fff;
-  font-weight: 700;
 }
 
 /* Large watermark logo in hero */
@@ -216,26 +202,6 @@ body {
   border: 1px solid rgba(255,255,255,0.05);
 }
 
-.hero-focus-card {
-  padding: 1.5rem;
-  border-radius: 1.25rem;
-  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-  border: 1px solid rgba(255,255,255,0.07);
-  box-shadow: 0 22px 60px rgba(1,6,17,0.35);
-}
-
-.hero-focus-label {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.35rem 0.7rem;
-  border-radius: 999px;
-  background: rgba(14,231,255,0.08);
-  border: 1px solid rgba(14,231,255,0.22);
-  color: rgba(190,248,255,0.95);
-  font-size: 0.82rem;
-  font-weight: 700;
-}
-
 .slider-controls button {
   @apply bg-white/10 text-white/80 rounded-full w-9 h-9 flex items-center justify-center;
 }
@@ -278,8 +244,8 @@ body {
     font-size: 0.74rem;
   }
 
-  .hero-focus-card {
-    padding: 1.15rem;
+  .hero-title {
+    min-height: auto;
   }
 
   .hero-visual-stage {
@@ -289,12 +255,6 @@ body {
 
   .hero-visual-stage .hero-visual {
     transform: translate3d(0.25rem, -0.35rem, 0) scale(1.05);
-  }
-
-  .hero-visual-caption {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 0.25rem;
   }
 
   .hero-logo-large {

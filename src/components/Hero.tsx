@@ -6,8 +6,8 @@ const slides = [
   {
     id: 'ai',
     label: 'AI Automation',
-    title: 'AI Automation Services for Agentic Workflows and Secure RAG',
-    subtitle: 'We design and deploy AI automation systems, autonomous agents, and secure retrieval pipelines that reduce manual work and bring production-ready intelligence into business operations.',
+    title: 'AI automation for agentic workflows and secure RAG systems.',
+    subtitle: 'Design autonomous agents, retrieval pipelines, and workflow automation that reduce manual work and bring production-ready intelligence into daily operations.',
     cta: 'Explore AI Automation',
     img: '/hero-ai.png',
     bg: 'bg-[radial-gradient(600px_400px_at_10%_20%,rgba(14,231,255,0.04),transparent_12%),radial-gradient(400px_300px_at_90%_80%,rgba(102,16,242,0.03),transparent_18%)]'
@@ -15,8 +15,8 @@ const slides = [
   {
     id: 'cloud',
     label: 'Platform Engineering',
-    title: 'Platform Engineering and Kubernetes Consulting for Production Teams',
-    subtitle: 'We build production-grade Kubernetes platforms, GPU-ready infrastructure, Infrastructure as Code, and GitOps delivery pipelines for teams that need reliability at scale.',
+    title: 'Platform engineering for Kubernetes and production delivery.',
+    subtitle: 'Modernize delivery platforms with Kubernetes, GPU-ready infrastructure, Infrastructure as Code, and GitOps pipelines built for reliability at scale.',
     cta: 'Modernize Your Platform',
     img: '/hero-cloud.png',
     bg: 'bg-[linear-gradient(90deg,rgba(2,6,23,0.35),rgba(7,16,35,0.1))]'
@@ -24,8 +24,8 @@ const slides = [
   {
     id: 'security',
     label: 'Cloud Security',
-    title: 'Cloud Security, DevSecOps and AI Guardrails',
-    subtitle: 'We help teams secure AI applications and cloud infrastructure with DevSecOps automation, data protection guardrails, and continuous compliance controls.',
+    title: 'Cloud security, DevSecOps, and AI guardrails.',
+    subtitle: 'Secure AI applications and cloud infrastructure with DevSecOps automation, data protection guardrails, and continuous compliance controls.',
     cta: 'Secure Your Infrastructure',
     img: '/hero-security.png',
     bg: 'bg-[linear-gradient(90deg,rgba(6,7,15,0.45),rgba(2,8,20,0.08))]'
@@ -77,60 +77,50 @@ export default function Hero() {
           </div>
 
           <div className="mt-7">
-            <h1 className="hero-title">
-              AI automation, platform engineering, and Kubernetes consulting for production teams.
-            </h1>
-            <p className="mt-5 text-lg text-white/80 max-w-3xl hero-lede">
-              Qentra.cloud helps companies design AI agents, modernize delivery platforms, automate DevOps workflows, and secure high-scale infrastructure with practical engineering delivery.
-            </p>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`${slides[index].id}-headline`}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.55 }}
+              >
+                <h1 className="hero-title">{slides[index].title}</h1>
+                <p className="mt-5 text-lg text-white/80 max-w-3xl hero-lede">{slides[index].subtitle}</p>
+              </motion.div>
+            </AnimatePresence>
             <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-white/70">
               <span className="hero-stat">Production delivery</span>
               <span className="hero-stat">Platform modernization</span>
               <span className="hero-stat">Security by design</span>
             </div>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={slides[index].id}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.6 }}
-                role="group"
-                aria-roledescription="slide"
-                aria-label={`${index + 1} of ${slides.length}: ${slides[index].title}`}
-                className="mt-8 hero-focus-card"
+
+            <div className="mt-8 hero-actions">
+              <a
+                href={
+                  slides[index].id === 'ai'
+                    ? '/ai-automation'
+                    : slides[index].id === 'cloud'
+                      ? '/platform-engineering'
+                      : '/cloud-security'
+                }
+                className="inline-block px-6 py-3 rounded-md bg-gradient-to-r from-electric to-cyan text-black font-semibold"
               >
-                <div className="hero-focus-label">{slides[index].label}</div>
-                <h2 className="mt-4 text-2xl md:text-4xl font-heading font-extrabold leading-tight">{slides[index].title}</h2>
-                <p className="mt-4 text-lg text-white/80 max-w-2xl">{slides[index].subtitle}</p>
-                <div className="mt-6 flex flex-wrap gap-4">
-                  <a
-                    href={
-                      slides[index].id === 'ai'
-                        ? '/ai-automation'
-                        : slides[index].id === 'cloud'
-                          ? '/platform-engineering'
-                          : '/cloud-security'
-                    }
-                    className="inline-block px-6 py-3 rounded-md bg-gradient-to-r from-electric to-cyan text-black font-semibold"
-                  >
-                    {slides[index].cta}
-                  </a>
-                  <a
-                    href={
-                      slides[index].id === 'ai'
-                        ? '/agentic-ai-workflows'
-                        : slides[index].id === 'cloud'
-                          ? '/gpu-kubernetes'
-                          : '/ai-security-guardrails'
-                    }
-                    className="inline-block px-6 py-3 rounded-md border border-white/10 text-white/90"
-                  >
-                    Learn More
-                  </a>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+                {slides[index].cta}
+              </a>
+              <a
+                href={
+                  slides[index].id === 'ai'
+                    ? '/agentic-ai-workflows'
+                    : slides[index].id === 'cloud'
+                      ? '/gpu-kubernetes'
+                      : '/ai-security-guardrails'
+                }
+                className="inline-block px-6 py-3 rounded-md border border-white/10 text-white/90"
+              >
+                Learn More
+              </a>
+            </div>
 
             <div className="mt-8 flex items-center gap-3 slider-controls flex-wrap">
               <button onClick={prev} aria-label="Previous slide" className="mr-2">‹</button>
@@ -177,10 +167,6 @@ export default function Hero() {
                 className="hero-visual w-full"
                 priority={index === 0}
               />
-              <div className="hero-visual-caption">
-                <span>{slides[index].label}</span>
-                <strong>{slides[index].id === 'ai' ? 'Agent workflows' : slides[index].id === 'cloud' ? 'Kubernetes platforms' : 'Security guardrails'}</strong>
-              </div>
             </motion.div>
           </AnimatePresence>
         </div>
