@@ -10,16 +10,21 @@ const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
 const RATE_LIMIT = 5
 const RATE_WINDOW_MS = 60_000
 
-function isRateLimited(ip: string): boolean {
+function checkRateLimit(ip: string) {
   const now = Date.now()
   const entry = rateLimitMap.get(ip)
   if (!entry || now > entry.resetAt) {
-    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS })
-    return false
+    const nextEntry = { count: 1, resetAt: now + RATE_WINDOW_MS }
+    rateLimitMap.set(ip, nextEntry)
+    return { limited: false, remaining: RATE_LIMIT - 1, resetAt: nextEntry.resetAt }
   }
-  if (entry.count >= RATE_LIMIT) return true
+
+  if (entry.count >= RATE_LIMIT) {
+    return { limited: true, remaining: 0, resetAt: entry.resetAt }
+  }
+
   entry.count++
-  return false
+  return { limited: false, remaining: Math.max(0, RATE_LIMIT - entry.count), resetAt: entry.resetAt }
 }
 
 function escapeHtml(unsafe: string) {
@@ -31,13 +36,84 @@ function escapeHtml(unsafe: string) {
     .replace(/'/g, '&#039;')
 }
 
+function getBaseUrl(req: NextApiRequest) {
+  const configured = process.env.SITE_URL
+  if (configured) return configured
+
+  const host = req.headers.host
+  if (!host) return null
+
+  const protoHeader = req.headers['x-forwarded-proto']
+  const proto = Array.isArray(protoHeader) ? protoHeader[0] : protoHeader || 'https'
+  return `${proto}://${host}`
+}
+
+function isAllowedOrigin(req: NextApiRequest) {
+  const baseUrl = getBaseUrl(req)
+  if (!baseUrl) return false
+
+  let allowedOrigin: string
+  try {
+    allowedOrigin = new URL(baseUrl).origin
+  } catch {
+    return false
+  }
+
+  const originHeader = req.headers.origin
+  if (originHeader) {
+    return originHeader === allowedOrigin
+  }
+
+  const refererHeader = req.headers.referer
+  if (!refererHeader) return false
+
+  try {
+    return new URL(refererHeader).origin === allowedOrigin
+  } catch {
+    return false
+  }
+}
+
+function getClientIp(req: NextApiRequest) {
+  const xRealIp = req.headers['x-real-ip']
+  if (typeof xRealIp === 'string' && xRealIp.trim()) {
+    return xRealIp.trim()
+  }
+
+  const forwardedFor = req.headers['x-forwarded-for']
+  if (typeof forwardedFor === 'string') {
+    const firstIp = forwardedFor.split(',')[0]?.trim()
+    if (firstIp) return firstIp
+  }
+
+  return req.socket.remoteAddress || 'unknown'
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
+  res.setHeader('Cache-Control', 'no-store')
+
   if (req.method !== 'POST') {
+    res.setHeader('Allow', 'POST')
     return res.status(405).json({ ok: false, message: 'Method not allowed' })
   }
 
-  const ip = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.socket.remoteAddress || 'unknown'
-  if (isRateLimited(ip)) {
+  if (!isAllowedOrigin(req)) {
+    return res.status(403).json({ ok: false, message: 'Forbidden origin' })
+  }
+
+  const contentType = req.headers['content-type'] || ''
+  if (!contentType.toLowerCase().startsWith('application/json')) {
+    return res.status(415).json({ ok: false, message: 'Unsupported media type' })
+  }
+
+  const ip = getClientIp(req)
+  const rateLimit = checkRateLimit(ip)
+  res.setHeader('X-RateLimit-Limit', String(RATE_LIMIT))
+  res.setHeader('X-RateLimit-Remaining', String(rateLimit.remaining))
+  res.setHeader('X-RateLimit-Reset', String(Math.ceil(rateLimit.resetAt / 1000)))
+
+  if (rateLimit.limited) {
+    res.setHeader('Retry-After', String(Math.max(1, Math.ceil((rateLimit.resetAt - Date.now()) / 1000))))
     return res.status(429).json({ ok: false, message: 'Too many requests. Please wait a moment and try again.' })
   }
 
