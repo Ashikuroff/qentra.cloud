@@ -66,6 +66,90 @@ body {
   transform: translateZ(0);
 }
 
+.hero-shell {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.hero-copy {
+  align-self: center;
+}
+
+.hero-title {
+  max-width: 58rem;
+  font-family: Space Grotesk, Sora, Inter, sans-serif;
+  font-size: clamp(2.65rem, 5vw, 4.9rem);
+  line-height: 1.03;
+  font-weight: 800;
+}
+
+.hero-lede {
+  line-height: 1.75;
+}
+
+.hero-tab-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.hero-visual-column {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-self: start;
+  padding-top: 0.5rem;
+}
+
+.hero-visual-stage {
+  position: relative;
+  width: min(100%, 34rem);
+  margin-top: -1.75rem;
+  margin-right: -1.25rem;
+  padding: 1.15rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(145deg, rgba(255,255,255,0.075), rgba(255,255,255,0.018));
+  border: 1px solid rgba(255,255,255,0.075);
+  box-shadow: 0 30px 80px rgba(1,6,17,0.46), 0 0 42px rgba(14,231,255,0.08);
+  overflow: hidden;
+}
+
+.hero-visual-stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(14,231,255,0.08), transparent 42%, rgba(124,58,237,0.08));
+  pointer-events: none;
+}
+
+.hero-visual-stage .hero-visual {
+  position: relative;
+  z-index: 1;
+  transform: translate3d(0.75rem, -0.65rem, 0) scale(1.08);
+  filter: drop-shadow(0 22px 32px rgba(0,0,0,0.36));
+}
+
+.hero-visual-caption {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  padding: 0.9rem 1rem;
+  border-radius: 0.9rem;
+  background: rgba(2,6,23,0.62);
+  border: 1px solid rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.78);
+  font-size: 0.82rem;
+}
+
+.hero-visual-caption strong {
+  color: #fff;
+  font-weight: 700;
+}
+
 /* Large watermark logo in hero */
 .hero-logo-large {
   position: absolute;
@@ -157,6 +241,21 @@ body {
 }
 
 @media (max-width: 1024px) {
+  .hero-shell {
+    padding-top: 1.5rem;
+  }
+
+  .hero-visual-column {
+    justify-content: center;
+    padding-top: 1rem;
+  }
+
+  .hero-visual-stage {
+    margin-top: 0;
+    margin-right: 0;
+    width: min(100%, 32rem);
+  }
+
   .hero-logo-large {
     opacity: 0.04;
     width: 110%;
@@ -165,6 +264,39 @@ body {
 }
 
 @media (max-width: 640px) {
+  .hero-shell {
+    padding-top: 0.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .hero-title {
+    font-size: 2.65rem;
+  }
+
+  .hero-tab {
+    padding: 0.48rem 0.7rem;
+    font-size: 0.74rem;
+  }
+
+  .hero-focus-card {
+    padding: 1.15rem;
+  }
+
+  .hero-visual-stage {
+    border-radius: 1.1rem;
+    padding: 0.9rem;
+  }
+
+  .hero-visual-stage .hero-visual {
+    transform: translate3d(0.25rem, -0.35rem, 0) scale(1.05);
+  }
+
+  .hero-visual-caption {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
   .hero-logo-large {
     display: none;
   }

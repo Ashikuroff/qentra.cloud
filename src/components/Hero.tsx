@@ -55,14 +55,14 @@ export default function Hero() {
       <div className={`absolute inset-0 z-0 ${slides[index].bg}`} />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src="/logo-wordmark.svg" alt="" aria-hidden="true" className="hero-logo-large" />
-      <div className="container relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-        <div className="md:col-span-7">
+      <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center hero-shell">
+        <div className="lg:col-span-7 hero-copy">
           <div className="hero-eyebrow">
             <span className="hero-eyebrow-dot" />
             AI Automation • Platform Engineering • Cloud Security
           </div>
 
-          <div className="mt-5 flex gap-3 flex-wrap">
+          <div className="mt-5 hero-tab-row">
             {slides.map((s, i) => (
               <button
                 key={s.id}
@@ -77,11 +77,11 @@ export default function Hero() {
           </div>
 
           <div className="mt-7">
-            <h1 className="text-4xl md:text-6xl font-heading font-extrabold leading-[1.05] max-w-4xl">
-              AI automation, cloud engineering, and Kubernetes consulting for production teams.
+            <h1 className="hero-title">
+              AI automation, platform engineering, and Kubernetes consulting for production teams.
             </h1>
-            <p className="mt-5 text-lg text-white/80 max-w-3xl">
-              Qentra.cloud helps companies design AI agents, modernize cloud platforms, automate DevOps workflows, and secure high-scale infrastructure with practical engineering delivery.
+            <p className="mt-5 text-lg text-white/80 max-w-3xl hero-lede">
+              Qentra.cloud helps companies design AI agents, modernize delivery platforms, automate DevOps workflows, and secure high-scale infrastructure with practical engineering delivery.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-white/70">
               <span className="hero-stat">Production delivery</span>
@@ -159,15 +159,15 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="md:col-span-5 flex items-center justify-center">
+        <div className="lg:col-span-5 hero-visual-column">
           <AnimatePresence mode="wait">
             <motion.div
               key={slides[index].id}
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
+              initial={{ opacity: 0, y: 18, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -12, scale: 0.98 }}
               transition={{ duration: 0.6 }}
-              className="glass p-6 rounded-xl w-full max-w-lg shadow-glow-md"
+              className="hero-visual-stage"
             >
               <Image
                 src={slides[index].img}
@@ -177,6 +177,10 @@ export default function Hero() {
                 className="hero-visual w-full"
                 priority={index === 0}
               />
+              <div className="hero-visual-caption">
+                <span>{slides[index].label}</span>
+                <strong>{slides[index].id === 'ai' ? 'Agent workflows' : slides[index].id === 'cloud' ? 'Kubernetes platforms' : 'Security guardrails'}</strong>
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>
