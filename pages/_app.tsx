@@ -4,28 +4,32 @@ import Head from 'next/head'
 import Script from 'next/script'
 
 export default function App({ Component, pageProps }: AppProps) {
+  const siteUrl = process.env.SITE_URL || 'https://qentra.cloud'
+  const title = 'AI Automation, Cloud Engineering & Kubernetes Consulting | Qentra.cloud'
+  const description = 'Qentra.cloud delivers AI automation services, cloud engineering, Kubernetes consulting, DevOps automation, and cloud security for teams building production-grade platforms.'
+
   return (
     <>
       <Head>
-        <title>Qentra.cloud — AI Automation & Cloud Engineering</title>
-        <meta name="description" content="AI Automation & Cloud Engineering for modern businesses. Qentra.cloud designs, automates, and scales intelligent cloud-native systems using AI, Kubernetes, and DevOps." />
+        <title>{title}</title>
+        <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="canonical" href={process.env.SITE_URL || 'https://qentra.cloud'} />
+        <link rel="canonical" href={siteUrl} />
 
         {/* Open Graph */}
-        <meta property="og:title" content="Qentra.cloud — AI Automation & Cloud Engineering" />
-        <meta property="og:description" content="Enterprise-grade AI automation, cloud engineering, and security solutions for modern businesses." />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={process.env.SITE_URL || 'https://qentra.cloud'} />
-        <meta property="og:image" content={`${process.env.SITE_URL || 'https://qentra.cloud'}/og-image-new.svg`} />
+        <meta property="og:url" content={siteUrl} />
+        <meta property="og:image" content={`${siteUrl}/og-image-new.svg`} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Qentra.cloud — AI Automation & Cloud Engineering" />
-        <meta name="twitter:description" content="Enterprise-grade AI automation, cloud engineering, and security solutions for modern businesses." />
-        <meta name="twitter:image" content={`${process.env.SITE_URL || 'https://qentra.cloud'}/og-image-new.svg`} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={`${siteUrl}/og-image-new.svg`} />
         <meta name="theme-color" content="#061028" />
         <link rel="icon" href="/favicon-new.svg" />
         <script
@@ -35,10 +39,22 @@ export default function App({ Component, pageProps }: AppProps) {
               '@context': 'https://schema.org',
               '@type': 'Organization',
               name: 'Qentra.cloud',
-              url: 'https://qentra.cloud',
-              logo: 'https://qentra.cloud/logo-mark.svg',
-              description: 'AI Automation & Cloud Engineering for modern businesses.',
+              url: siteUrl,
+              logo: `${siteUrl}/logo-mark.svg`,
+              description,
               sameAs: ['https://github.com/Ashikuroff/qentra.cloud']
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'Qentra.cloud',
+              url: siteUrl,
+              description
             })
           }}
         />

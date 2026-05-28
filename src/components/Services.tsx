@@ -1,14 +1,14 @@
 import { motion } from 'framer-motion'
 
 const SERVICES = [
-  { name: 'Agentic Workflows', desc: 'Autonomous multi-agent systems designed to execute complex business loops and reason through multi-step tasks.' },
-  { name: 'RAG & Semantic Search', desc: 'Context-aware search systems and knowledge retrieval pipelines using state-of-the-art vector databases.' },
-  { name: 'Model Optimization', desc: 'Fine-tuning, model quantization, and optimization for low-latency, cost-effective production inference.' },
-  { name: 'GPU Orchestration', desc: 'High-performance cloud configurations for training, hosting, and scaling heavy AI and LLM workloads.' },
-  { name: 'GitOps & IaC Platforms', desc: 'Declarative Kubernetes cluster setups and infrastructure management via robust GitOps pipelines.' },
-  { name: 'DevSecOps & Model Safety', desc: 'Automated code-to-cloud security, secret rotation, and protection against prompt injection.' },
-  { name: 'Cognitive Data Pipelines', desc: 'Real-time ingestion, processing, and vector embedding of structured and unstructured data feeds.' },
-  { name: 'AI Model Guardrails', desc: 'Implementation of safety boundaries, compliance logging, and runtime output moderation.' }
+  { name: 'AI Automation Services', desc: 'Design AI agents and workflow automations that handle repetitive operations, service delivery tasks, and multi-step business processes.' },
+  { name: 'RAG and Semantic Search', desc: 'Build retrieval-augmented generation systems and knowledge search pipelines backed by vector databases and secure data access.' },
+  { name: 'Model Optimization', desc: 'Improve inference speed, cost, and deployment quality with model tuning, quantization, and production performance optimization.' },
+  { name: 'GPU and LLM Infrastructure', desc: 'Deploy GPU-ready cloud environments for training, hosting, and scaling large language model and AI workloads.' },
+  { name: 'Kubernetes Consulting', desc: 'Architect Kubernetes platforms, GitOps delivery flows, and Infrastructure as Code for reliable platform operations.' },
+  { name: 'DevSecOps Automation', desc: 'Embed security scanning, secret management, policy controls, and safer release workflows across the software delivery lifecycle.' },
+  { name: 'Data Engineering for AI', desc: 'Create real-time data pipelines for ingestion, transformation, embedding, and retrieval across structured and unstructured sources.' },
+  { name: 'AI Guardrails and Compliance', desc: 'Implement runtime guardrails, monitoring, logging, and governance controls for enterprise AI systems.' }
 ]
 
 export default function Services() {
@@ -25,8 +25,8 @@ export default function Services() {
   return (
     <section id="services" className="pt-12">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-heading font-extrabold">Services</h2>
-        <p className="text-sm text-white/70 max-w-xl">Enterprise-grade AI, Cloud, and Security engineering services tailored to high-scale production systems.</p>
+        <h2 className="text-2xl font-heading font-extrabold">AI Automation, Cloud Engineering, and Security Services</h2>
+        <p className="text-sm text-white/70 max-w-xl">Qentra.cloud delivers consulting and implementation across AI automation, Kubernetes, DevOps, cloud infrastructure, and production security.</p>
       </div>
 
       <motion.div variants={container} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

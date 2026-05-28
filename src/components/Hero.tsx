@@ -5,24 +5,24 @@ import { motion, AnimatePresence } from 'framer-motion'
 const slides = [
   {
     id: 'ai',
-    title: 'Cognitive AI Automation & Agentic Workflows',
-    subtitle: 'We design and deploy autonomous AI agents, multi-agent orchestrations, and secure RAG pipelines that automate complex operations and scale business intelligence.',
-    cta: 'Explore AI Solutions',
+    title: 'AI Automation Services for Agentic Workflows and Secure RAG',
+    subtitle: 'We design and deploy AI automation systems, autonomous agents, and secure retrieval pipelines that reduce manual work and bring production-ready intelligence into business operations.',
+    cta: 'Explore AI Automation',
     img: '/hero-ai.png',
     bg: 'bg-[radial-gradient(600px_400px_at_10%_20%,rgba(14,231,255,0.04),transparent_12%),radial-gradient(400px_300px_at_90%_80%,rgba(102,16,242,0.03),transparent_18%)]'
   },
   {
     id: 'cloud',
-    title: 'Enterprise Platform Engineering & GPU Orchestration',
-    subtitle: 'Accelerate training and model inference. We architect production-grade Kubernetes, custom GPU workloads, IaC, and robust GitOps delivery pipelines.',
+    title: 'Cloud Engineering and Kubernetes Consulting for Production Platforms',
+    subtitle: 'We build production-grade Kubernetes platforms, GPU-ready cloud infrastructure, Infrastructure as Code, and GitOps delivery pipelines for teams that need reliability at scale.',
     cta: 'Modernize Your Platform',
     img: '/hero-cloud.png',
     bg: 'bg-[linear-gradient(90deg,rgba(2,6,23,0.35),rgba(7,16,35,0.1))]'
   },
   {
     id: 'security',
-    title: 'Model Safety, Guardrails & Intelligent Cloud Security',
-    subtitle: 'Secure your models and infrastructure. We establish automated security scanning, data privacy guardrails, and real-time compliance operations.',
+    title: 'Cloud Security, DevSecOps and AI Guardrails',
+    subtitle: 'We help teams secure AI applications and cloud infrastructure with DevSecOps automation, data protection guardrails, and continuous compliance controls.',
     cta: 'Secure Your Infrastructure',
     img: '/hero-security.png',
     bg: 'bg-[linear-gradient(90deg,rgba(6,7,15,0.45),rgba(2,8,20,0.08))]'
@@ -54,7 +54,7 @@ export default function Hero() {
       <img src="/logo-wordmark.svg" alt="" aria-hidden="true" className="hero-logo-large" />
       <div className="container relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         <div className="md:col-span-7">
-          <div className="inline-block px-3 py-1 rounded-full bg-white/3 text-sm text-electric font-medium">Enterprise • AI • Cloud</div>
+          <div className="inline-block px-3 py-1 rounded-full bg-white/3 text-sm text-electric font-medium">AI Automation • Cloud Engineering • Kubernetes</div>
 
           <div className="mt-4 flex gap-3">
             {slides.map((s, i) => (
@@ -71,6 +71,12 @@ export default function Hero() {
           </div>
 
           <div className="mt-6">
+            <h1 className="text-4xl md:text-6xl font-heading font-extrabold leading-tight max-w-4xl">
+              AI automation, cloud engineering, and Kubernetes consulting for production teams.
+            </h1>
+            <p className="mt-4 text-lg text-white/80 max-w-3xl">
+              Qentra.cloud helps companies design AI agents, modernize cloud platforms, automate DevOps workflows, and secure high-scale infrastructure with practical engineering delivery.
+            </p>
             <AnimatePresence mode="wait">
               <motion.div
                 key={slides[index].id}
@@ -81,8 +87,9 @@ export default function Hero() {
                 role="group"
                 aria-roledescription="slide"
                 aria-label={`${index + 1} of ${slides.length}: ${slides[index].title}`}
+                className="mt-8"
               >
-                <h2 className="text-3xl md:text-5xl font-heading font-extrabold leading-tight">{slides[index].title}</h2>
+                <h2 className="text-2xl md:text-4xl font-heading font-extrabold leading-tight">{slides[index].title}</h2>
                 <p className="mt-4 text-lg text-white/80 max-w-2xl">{slides[index].subtitle}</p>
                 <div className="mt-6 flex gap-4">
                   <a href="#contact" className="inline-block px-6 py-3 rounded-md bg-gradient-to-r from-electric to-cyan text-black font-semibold">{slides[index].cta}</a>

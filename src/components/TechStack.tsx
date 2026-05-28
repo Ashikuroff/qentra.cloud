@@ -14,7 +14,7 @@ const STACK = [
 export default function TechStack() {
   return (
     <section id="tech" className="pt-12">
-      <h2 className="text-2xl font-heading font-extrabold mb-6">Technology Stack</h2>
+      <h2 className="text-2xl font-heading font-extrabold mb-6">Technology Stack for AI, Cloud, and DevOps Delivery</h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
         {STACK.map((s) => (
