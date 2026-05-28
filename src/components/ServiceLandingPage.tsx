@@ -5,6 +5,7 @@ type ServiceLandingPageProps = {
   eyebrow: string
   title: string
   intro: string
+  process: string[]
   highlights: string[]
   deliverables: string[]
   outcomes: string[]
@@ -15,6 +16,7 @@ export default function ServiceLandingPage({
   eyebrow,
   title,
   intro,
+  process,
   highlights,
   deliverables,
   outcomes,
@@ -34,6 +36,29 @@ export default function ServiceLandingPage({
             Back to Homepage
           </Link>
         </div>
+      </section>
+
+      <section className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-6 items-start">
+        <article className="glass rounded-xl p-6">
+          <h2 className="text-2xl font-heading font-extrabold">Engagement Structure</h2>
+          <p className="mt-3 text-white/75">
+            Each engagement is designed around discovery, implementation priorities, and an operating model your team can sustain after delivery.
+          </p>
+        </article>
+
+        <article className="glass rounded-xl p-6">
+          <h2 className="text-2xl font-heading font-extrabold">How We Approach It</h2>
+          <ol className="mt-4 space-y-4 text-white/80">
+            {process.map((item, index) => (
+              <li key={item} className="flex gap-4">
+                <div className="w-8 h-8 rounded-full bg-electric text-black font-bold flex items-center justify-center shrink-0">
+                  {index + 1}
+                </div>
+                <p>{item}</p>
+              </li>
+            ))}
+          </ol>
+        </article>
       </section>
 
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -69,7 +94,7 @@ export default function ServiceLandingPage({
         <div className="glass rounded-xl p-6">
           <h2 className="text-2xl font-heading font-extrabold">Related Services</h2>
           <p className="mt-3 text-white/75 max-w-2xl">
-            Explore adjacent capabilities across AI automation, cloud engineering, Kubernetes consulting, and platform security.
+            Explore adjacent capabilities across AI automation, platform engineering, Kubernetes consulting, and cloud security delivery.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             {relatedLinks.map((link) => (

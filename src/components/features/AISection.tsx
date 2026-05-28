@@ -15,8 +15,9 @@ export default function AISection() {
             <li>• Retrieval-augmented generation and vector databases</li>
             <li>• Intent classification and business process automation</li>
           </ul>
-          <div className="mt-6">
-            <a href="#services" className="inline-block px-5 py-3 rounded-md bg-gradient-to-r from-electric to-cyan text-black font-semibold">Explore AI Solutions</a>
+          <div className="mt-6 flex flex-wrap gap-4">
+            <a href="/ai-automation" className="inline-block px-5 py-3 rounded-md bg-gradient-to-r from-electric to-cyan text-black font-semibold">AI Automation Overview</a>
+            <a href="/agentic-ai-workflows" className="inline-block px-5 py-3 rounded-md border border-white/10 text-white/90">Agentic AI Workflows</a>
           </div>
         </motion.div>
 

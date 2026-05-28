@@ -7,11 +7,17 @@ export default function GPUKubernetesPage() {
       title="GPU Kubernetes Platforms & AI Infrastructure | Qentra.cloud"
       description="GPU Kubernetes platform design, AI infrastructure consulting, scalable inference environments, and production operations support."
       canonicalPath="/gpu-kubernetes"
+      serviceName="GPU Kubernetes Platforms and AI Infrastructure"
     >
       <ServiceLandingPage
         eyebrow="AI Infrastructure"
         title="GPU Kubernetes platforms for AI infrastructure and production inference workloads."
         intro="Qentra.cloud supports teams that need stronger infrastructure for AI model delivery. We help design GPU-capable Kubernetes platforms, cloud-native runtime patterns, and operational practices that support demanding training and inference workloads."
+        process={[
+          'Review workload patterns, compute requirements, and operational goals that drive the infrastructure design.',
+          'Define platform architecture for GPU-capable environments, delivery workflows, and workload management practices.',
+          'Prioritize runtime visibility, scaling paths, and operational readiness for sustained production use.'
+        ]}
         highlights={[
           'GPU-ready Kubernetes architecture for model and application workloads',
           'Operational planning for inference environments and scaling patterns',

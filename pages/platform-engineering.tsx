@@ -7,11 +7,17 @@ export default function PlatformEngineeringPage() {
       title="Platform Engineering & Kubernetes Consulting | Qentra.cloud"
       description="Platform engineering and Kubernetes consulting for reliable delivery platforms, Infrastructure as Code, observability, and cloud-native scale."
       canonicalPath="/platform-engineering"
+      serviceName="Platform Engineering and Kubernetes Consulting"
     >
       <ServiceLandingPage
         eyebrow="Platform Engineering"
         title="Platform engineering and Kubernetes consulting for reliable production delivery."
         intro="Qentra.cloud helps engineering teams build internal platforms that improve delivery speed, consistency, and operational reliability. We focus on Kubernetes, Infrastructure as Code, deployment workflows, and the platform foundations needed to support both product and AI workloads."
+        process={[
+          'Assess the current platform, delivery pipeline, and operating constraints affecting release speed and reliability.',
+          'Define a practical target architecture for platform capabilities, ownership boundaries, and Kubernetes operating patterns.',
+          'Sequence implementation around the highest-value platform improvements so teams can adopt changes without delivery disruption.'
+        ]}
         highlights={[
           'Platform engineering for cloud-native application and AI delivery',
           'Kubernetes consulting for scaling, stabilization, and redesign',

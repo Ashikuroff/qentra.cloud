@@ -13,16 +13,17 @@ export default function CloudSection() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="md:col-span-1 order-1 md:order-2">
-          <h2 className="text-3xl font-heading font-extrabold">Cloud Engineering and Kubernetes Consulting</h2>
-          <p className="mt-4 text-white/80 max-w-xl">We design resilient cloud platforms for demanding application and AI workloads. By combining Kubernetes consulting, Infrastructure as Code, GitOps, and observability, we help teams ship faster without compromising reliability.</p>
+          <h2 className="text-3xl font-heading font-extrabold">Platform Engineering and Kubernetes Consulting</h2>
+          <p className="mt-4 text-white/80 max-w-xl">We design resilient internal platforms for demanding application and AI workloads. By combining Kubernetes consulting, Infrastructure as Code, GitOps, and observability, we help teams ship faster without compromising reliability.</p>
           <ul className="mt-6 space-y-2 text-white/80">
             <li>• GPU-ready Kubernetes platform architecture</li>
             <li>• Terraform, Infrastructure as Code, and cloud automation</li>
             <li>• Progressive delivery and high-throughput CI/CD</li>
             <li>• Multi-cloud operations and advanced observability</li>
           </ul>
-          <div className="mt-6">
-            <a href="#services" className="inline-block px-5 py-3 rounded-md bg-gradient-to-r from-electric to-cyan text-black font-semibold">Modernize Your Infrastructure</a>
+          <div className="mt-6 flex flex-wrap gap-4">
+            <a href="/platform-engineering" className="inline-block px-5 py-3 rounded-md bg-gradient-to-r from-electric to-cyan text-black font-semibold">Platform Engineering Overview</a>
+            <a href="/gpu-kubernetes" className="inline-block px-5 py-3 rounded-md border border-white/10 text-white/90">GPU Kubernetes Platforms</a>
           </div>
         </motion.div>
       </div>

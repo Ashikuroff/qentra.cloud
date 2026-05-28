@@ -7,6 +7,7 @@ type ServicePageLayoutProps = {
   title: string
   description: string
   canonicalPath: string
+  serviceName: string
   children: ReactNode
 }
 
@@ -14,6 +15,7 @@ export default function ServicePageLayout({
   title,
   description,
   canonicalPath,
+  serviceName,
   children
 }: ServicePageLayoutProps) {
   const siteUrl = process.env.SITE_URL || 'https://qentra.cloud'
@@ -34,6 +36,54 @@ export default function ServicePageLayout({
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={`${siteUrl}/og-image-new.svg`} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                '@context': 'https://schema.org',
+                '@type': 'WebPage',
+                name: title,
+                description,
+                url: canonicalUrl
+              },
+              {
+                '@context': 'https://schema.org',
+                '@type': 'Service',
+                name: serviceName,
+                description,
+                provider: {
+                  '@type': 'Organization',
+                  name: 'Qentra.cloud',
+                  url: siteUrl
+                },
+                areaServed: {
+                  '@type': 'Place',
+                  name: 'Global'
+                },
+                url: canonicalUrl
+              },
+              {
+                '@context': 'https://schema.org',
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                  {
+                    '@type': 'ListItem',
+                    position: 1,
+                    name: 'Home',
+                    item: siteUrl
+                  },
+                  {
+                    '@type': 'ListItem',
+                    position: 2,
+                    name: serviceName,
+                    item: canonicalUrl
+                  }
+                ]
+              }
+            ])
+          }}
+        />
       </Head>
 
       <div className="min-h-screen flex flex-col">

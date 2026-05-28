@@ -7,11 +7,17 @@ export default function AgenticAIWorkflowsPage() {
       title="Agentic AI Workflows & RAG Systems | Qentra.cloud"
       description="Agentic AI workflow consulting, retrieval-augmented generation systems, and operational AI delivery for production teams."
       canonicalPath="/agentic-ai-workflows"
+      serviceName="Agentic AI Workflows and RAG Systems"
     >
       <ServiceLandingPage
         eyebrow="AI Workflow Delivery"
         title="Agentic AI workflows and retrieval systems for operational automation."
         intro="Qentra.cloud helps teams design AI workflows that do more than generate text. We build governed agent flows, retrieval systems, and human-in-the-loop automation patterns that fit business operations and production software environments."
+        process={[
+          'Identify the decision paths, inputs, and exceptions that define the workflow before introducing agents or retrieval systems.',
+          'Design orchestration patterns for tools, prompts, retrieval, and human approval where trust and accuracy matter.',
+          'Structure rollout around evaluation, visibility, and operational controls so the workflow can be improved after launch.'
+        ]}
         highlights={[
           'Agentic workflows for support, operations, and internal knowledge use cases',
           'Retrieval systems that connect AI responses to trusted enterprise context',

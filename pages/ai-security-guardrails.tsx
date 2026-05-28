@@ -7,11 +7,17 @@ export default function AISecurityGuardrailsPage() {
       title="AI Security Guardrails & DevSecOps Consulting | Qentra.cloud"
       description="AI security guardrails, DevSecOps consulting, cloud security controls, and delivery practices for modern engineering teams."
       canonicalPath="/ai-security-guardrails"
+      serviceName="AI Security Guardrails and DevSecOps Consulting"
     >
       <ServiceLandingPage
         eyebrow="Security Delivery"
         title="AI security guardrails and DevSecOps practices for production delivery teams."
         intro="Qentra.cloud helps organizations secure AI-enabled workflows and cloud platforms with practical guardrails, policy controls, and delivery-focused security practices. The goal is to reduce risk without separating security from how teams actually build and ship software."
+        process={[
+          'Review how AI features, supporting services, and delivery pipelines currently expose risk or governance gaps.',
+          'Design guardrails, review controls, and DevSecOps practices that match the team’s real operating model.',
+          'Create an implementation path that improves security coverage while staying practical for production engineering teams.'
+        ]}
         highlights={[
           'AI guardrails for prompts, outputs, access, and sensitive workflow paths',
           'DevSecOps consulting aligned to modern engineering delivery practices',

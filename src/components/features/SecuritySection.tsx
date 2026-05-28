@@ -15,8 +15,9 @@ export default function SecuritySection() {
             <li>• Automated DevSecOps and compliance as code</li>
             <li>• Threat detection and incident response workflows</li>
           </ul>
-          <div className="mt-6">
-            <a href="#services" className="inline-block px-5 py-3 rounded-md bg-gradient-to-r from-electric to-cyan text-black font-semibold">Secure Your Platform</a>
+          <div className="mt-6 flex flex-wrap gap-4">
+            <a href="/cloud-security" className="inline-block px-5 py-3 rounded-md bg-gradient-to-r from-electric to-cyan text-black font-semibold">Cloud Security Overview</a>
+            <a href="/ai-security-guardrails" className="inline-block px-5 py-3 rounded-md border border-white/10 text-white/90">AI Security Guardrails</a>
           </div>
         </motion.div>
 
