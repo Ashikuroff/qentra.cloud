@@ -57,12 +57,7 @@ export default function Hero() {
       <img src="/logo-wordmark.svg" alt="" aria-hidden="true" className="hero-logo-large" />
       <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center hero-shell">
         <div className="lg:col-span-7 hero-copy">
-          <div className="hero-eyebrow">
-            <span className="hero-eyebrow-dot" />
-            AI Automation • Platform Engineering • Cloud Security
-          </div>
-
-          <div className="mt-5 hero-tab-row">
+          <div className="hero-tab-row">
             {slides.map((s, i) => (
               <button
                 key={s.id}
@@ -149,7 +144,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="lg:col-span-5 hero-visual-column">
+        <div className="lg:col-span-5 hero-visual-column" aria-hidden="true">
           <AnimatePresence mode="wait">
             <motion.div
               key={slides[index].id}

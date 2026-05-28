@@ -73,6 +73,8 @@ body {
 
 .hero-copy {
   align-self: center;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-title {
@@ -92,6 +94,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.65rem;
+  margin-top: 0.25rem;
 }
 
 .hero-visual-column {
@@ -153,27 +156,6 @@ body {
   min-height: 60vh;
 }
 
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.5rem 0.85rem;
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 999px;
-  background: rgba(255,255,255,0.03);
-  color: var(--accent-1);
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-
-.hero-eyebrow-dot {
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--accent-1), #7df9ff);
-  box-shadow: 0 0 18px rgba(14,231,255,0.65);
-}
-
 .hero-tab {
   padding: 0.5rem 0.9rem;
   border-radius: 0.75rem;
@@ -212,13 +194,13 @@ body {
   }
 
   .hero-visual-column {
-    justify-content: center;
-    padding-top: 1rem;
+    justify-content: flex-end;
+    padding-top: 0.75rem;
   }
 
   .hero-visual-stage {
     margin-top: 0;
-    margin-right: 0;
+    margin-right: -0.5rem;
     width: min(100%, 32rem);
   }
 
@@ -233,10 +215,22 @@ body {
   .hero-shell {
     padding-top: 0.5rem;
     padding-bottom: 2rem;
+    gap: 1.25rem;
   }
 
   .hero-title {
     font-size: 2.65rem;
+  }
+
+  .hero-copy {
+    order: 1;
+  }
+
+  .hero-visual-column {
+    order: 2;
+    width: 100%;
+    justify-content: flex-end;
+    padding-top: 0.25rem;
   }
 
   .hero-tab {
@@ -249,12 +243,14 @@ body {
   }
 
   .hero-visual-stage {
+    width: min(100%, 21rem);
     border-radius: 1.1rem;
-    padding: 0.9rem;
+    padding: 0.7rem;
+    margin-right: -0.65rem;
   }
 
   .hero-visual-stage .hero-visual {
-    transform: translate3d(0.25rem, -0.35rem, 0) scale(1.05);
+    transform: translate3d(0.45rem, -0.35rem, 0) scale(1.05);
   }
 
   .hero-logo-large {
