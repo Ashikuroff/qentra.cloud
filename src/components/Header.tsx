@@ -15,7 +15,7 @@ export default function Header() {
             <span className="mt-0.5 text-[0.58rem] font-bold uppercase leading-[0.76rem] tracking-[0.04em] text-[#9bdfff] sm:hidden">
               AI Automation<br />&amp; Cloud Engineering
             </span>
-            <span className="mt-1 hidden whitespace-nowrap text-[0.66rem] font-bold uppercase leading-none tracking-[0.06em] text-[#9bdfff] sm:block md:hidden xl:block xl:text-[0.64rem]">
+            <span className="mt-1 hidden whitespace-nowrap text-[0.66rem] font-bold uppercase leading-none tracking-[0.06em] text-[#9bdfff] sm:block md:hidden xl:block xl:text-[0.58rem]">
               AI Automation &amp; Cloud Engineering
             </span>
           </span>
