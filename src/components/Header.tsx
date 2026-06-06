@@ -6,16 +6,16 @@ export default function Header() {
 
     <header className="fixed top-0 left-0 right-0 z-50 bg-transparent">
       <div className="container flex items-center justify-between py-4">
-        <Link href="/" className="flex items-center gap-2.5 min-w-0" aria-label="Qentra home">
-          <img src="/logo-mark.svg" alt="" aria-hidden="true" className="w-9 h-9 sm:w-10 sm:h-10 logo-glow shrink-0" />
+        <Link href="/" className="flex items-center gap-2.5 lg:gap-2 min-w-0" aria-label="Qentra home">
+          <img src="/logo-mark.svg" alt="" aria-hidden="true" className="w-9 h-9 sm:w-10 sm:h-10 lg:w-9 lg:h-9 logo-glow shrink-0" />
           <span className="flex min-w-0 flex-col leading-none">
-            <span className="font-heading text-xl font-extrabold tracking-normal text-white sm:text-[1.35rem] lg:text-2xl">
+            <span className="font-heading text-xl font-extrabold tracking-normal text-white sm:text-[1.35rem] lg:text-[1.28rem]">
               Qentra
             </span>
             <span className="mt-0.5 text-[0.58rem] font-bold uppercase leading-[0.76rem] tracking-[0.04em] text-[#9bdfff] sm:hidden">
               AI Automation<br />&amp; Cloud Engineering
             </span>
-            <span className="mt-1 hidden whitespace-nowrap text-[0.66rem] font-bold uppercase leading-none tracking-[0.06em] text-[#9bdfff] sm:block lg:text-[0.7rem]">
+            <span className="mt-1 hidden whitespace-nowrap text-[0.66rem] font-bold uppercase leading-none tracking-[0.06em] text-[#9bdfff] sm:block md:hidden xl:block xl:text-[0.64rem]">
               AI Automation &amp; Cloud Engineering
             </span>
           </span>
