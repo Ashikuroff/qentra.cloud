@@ -57,7 +57,7 @@
       <text x="0" y="96" font-family="Space Grotesk, Sora, Inter, Arial, sans-serif" font-weight="700" font-size="108" letter-spacing="-1" fill="#071126" opacity="0.75" transform="translate(7 10)">Qentra</text>
       <text x="0" y="96" font-family="Space Grotesk, Sora, Inter, Arial, sans-serif" font-weight="700" font-size="108" letter-spacing="-1" fill="url(#text-main)">Qentra</text>
       <path d="M5 124H384" stroke="#0ee7ff" stroke-opacity="0.24" stroke-width="3" stroke-linecap="round"/>
-      <text x="6" y="170" fill="#9bdfff" opacity="0.76" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="2.6">AI AUTOMATION &amp; CLOUD ENGINEERING</text>
+      <text x="6" y="171" fill="#9bdfff" opacity="0.8" font-family="Inter, Arial, sans-serif" font-size="29" font-weight="700" letter-spacing="1.9">AI AUTOMATION &amp; CLOUD ENGINEERING</text>
     </g>
   </g>
 </svg>

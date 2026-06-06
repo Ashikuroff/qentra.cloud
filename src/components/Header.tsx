@@ -8,7 +8,7 @@ export default function Header() {
       <div className="container flex items-center justify-between py-4">
         <Link href="/" className="flex items-center gap-3">
           <img src="/logo-mark.svg" alt="Qentra" className="w-10 h-10 logo-glow" />
-          <img src="/logo-wordmark.svg" alt="Qentra" className="hidden sm:block h-8" />
+          <img src="/logo-wordmark.svg" alt="Qentra" className="hidden sm:block h-10 lg:h-11" />
         </Link>
 
         <nav className="hidden md:flex gap-5 lg:gap-8 items-center text-sm text-white/80">
