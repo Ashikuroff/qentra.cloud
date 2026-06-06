@@ -1,14 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="120" viewBox="0 0 600 120" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="120" viewBox="0 0 620 120" fill="none">
   <defs>
-    <linearGradient id="g" x1="0" x2="1">
-      <stop offset="0" stop-color="#0ee7ff" />
-      <stop offset="1" stop-color="#8b5cf6" />
+    <linearGradient id="text-main" x1="0" y1="20" x2="380" y2="96" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.55" stop-color="#e8fbff"/>
+      <stop offset="1" stop-color="#9df7ff"/>
     </linearGradient>
-    <filter id="f" x="-50%" y="-50%" width="200%" height="200%">
-      <feDropShadow dx="0" dy="6" stdDeviation="18" flood-color="#0ee7ff" flood-opacity="0.06"/>
+    <linearGradient id="text-cloud" x1="222" y1="20" x2="438" y2="96" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#32f5ff"/>
+      <stop offset="0.58" stop-color="#0ee7ff"/>
+      <stop offset="1" stop-color="#7dd3fc"/>
+    </linearGradient>
+    <filter id="text-depth" x="-80" y="-60" width="860" height="190" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#000814" flood-opacity="0.62"/>
     </filter>
   </defs>
-  <g filter="url(#f)">
-    <text x="20" y="78" font-family="Space Grotesk, Sora, Inter, sans-serif" font-weight="700" font-size="56" fill="url(#g)">Qentra.cloud</text>
+  <rect width="620" height="120" fill="transparent"/>
+  <g filter="url(#text-depth)">
+    <text x="0" y="78" font-family="Space Grotesk, Sora, Inter, Arial, sans-serif" font-weight="700" font-size="64" letter-spacing="-0.6" fill="#071126" opacity="0.75" transform="translate(4 6)">Qentra</text>
+    <text x="0" y="78" font-family="Space Grotesk, Sora, Inter, Arial, sans-serif" font-weight="700" font-size="64" letter-spacing="-0.6" fill="url(#text-main)">Qentra</text>
+    <text x="222" y="78" font-family="Space Grotesk, Sora, Inter, Arial, sans-serif" font-weight="700" font-size="64" letter-spacing="-0.6" fill="url(#text-cloud)">.cloud</text>
+    <path d="M4 96H438" stroke="#0ee7ff" stroke-opacity="0.22" stroke-width="2" stroke-linecap="round"/>
   </g>
 </svg>

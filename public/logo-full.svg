@@ -1,21 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="360" viewBox="0 0 1400 360" preserveAspectRatio="xMinYMid meet">
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="360" viewBox="0 0 1400 360" preserveAspectRatio="xMinYMid meet" fill="none">
   <defs>
-    <linearGradient id="lf-grad" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0" stop-color="#0ee7ff"/>
-      <stop offset="0.5" stop-color="#00d1ff"/>
-      <stop offset="1" stop-color="#7de3ff"/>
+    <linearGradient id="tile" x1="70" y1="65" x2="292" y2="286" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#172c55"/>
+      <stop offset="0.48" stop-color="#08152f"/>
+      <stop offset="1" stop-color="#030817"/>
     </linearGradient>
+    <linearGradient id="edge" x1="88" y1="82" x2="272" y2="284" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.22" stop-color="#9df7ff"/>
+      <stop offset="0.58" stop-color="#0ee7ff"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="core" x1="128" y1="108" x2="246" y2="244" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#9dffff"/>
+      <stop offset="0.38" stop-color="#0ee7ff"/>
+      <stop offset="0.72" stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="text-main" x1="340" y1="90" x2="860" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.55" stop-color="#e8fbff"/>
+      <stop offset="1" stop-color="#9df7ff"/>
+    </linearGradient>
+    <linearGradient id="text-cloud" x1="675" y1="90" x2="1050" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#32f5ff"/>
+      <stop offset="0.58" stop-color="#0ee7ff"/>
+      <stop offset="1" stop-color="#7dd3fc"/>
+    </linearGradient>
+    <filter id="mark-depth" x="-40" y="-40" width="520" height="520" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="28" stdDeviation="22" flood-color="#000814" flood-opacity="0.58"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="28" flood-color="#0ee7ff" flood-opacity="0.22"/>
+    </filter>
+    <filter id="text-depth" x="-80" y="-60" width="900" height="230" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#000814" flood-opacity="0.62"/>
+    </filter>
   </defs>
   <rect width="1400" height="360" fill="transparent"/>
-  <g transform="translate(48,48)">
-    <g id="mark" transform="translate(0,0)">
-      <circle cx="64" cy="64" r="64" fill="url(#lf-grad)" />
-      <text x="64" y="82" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="56" fill="#071023">Q</text>
+  <g transform="translate(50 24)">
+    <g transform="scale(0.86)">
+      <rect x="42" y="42" width="276" height="276" rx="68" fill="url(#tile)"/>
+      <rect x="46" y="46" width="268" height="268" rx="64" stroke="#9df7ff" stroke-opacity="0.13" stroke-width="3"/>
+      <path d="M83 103C130 58 228 53 286 115" stroke="#ffffff" stroke-opacity="0.08" stroke-width="12" stroke-linecap="round"/>
+      <g filter="url(#mark-depth)">
+        <path d="M180 90L268 140V236L180 286L92 236V140L180 90Z" fill="#061028" fill-opacity="0.9"/>
+        <path d="M180 90L268 140V236L180 286L92 236V140L180 90Z" stroke="url(#edge)" stroke-width="11" stroke-linejoin="round"/>
+        <path d="M180 126L232 157V217L180 249L128 217V157L180 126Z" fill="url(#core)" opacity="0.94"/>
+        <path d="M180 126L232 157L180 188L128 157L180 126Z" fill="#d9fbff" opacity="0.28"/>
+        <path d="M232 157V217L180 249V188L232 157Z" fill="#183bff" opacity="0.22"/>
+        <path d="M128 157V217L180 249V188L128 157Z" fill="#0ee7ff" opacity="0.12"/>
+        <path d="M86 181C116 136 179 118 229 142" stroke="#d9fbff" stroke-opacity="0.82" stroke-width="10" stroke-linecap="round"/>
+        <path d="M263 182C229 232 157 249 108 210" stroke="#8b5cf6" stroke-opacity="0.95" stroke-width="13" stroke-linecap="round"/>
+        <circle cx="180" cy="188" r="20" fill="#04101f"/>
+        <circle cx="180" cy="188" r="9" fill="#b8fbff"/>
+        <circle cx="86" cy="181" r="11" fill="#0ee7ff"/>
+        <circle cx="263" cy="182" r="11" fill="#8b5cf6"/>
+      </g>
+      <ellipse cx="142" cy="99" rx="78" ry="46" fill="#ffffff" opacity="0.12"/>
     </g>
-    <g id="wordmark" transform="translate(160,86)">
-      <text x="0" y="0" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="78" fill="#FFFFFF">Qentra</text>
-      <text x="280" y="0" font-family="Inter, Arial, sans-serif" font-weight="600" font-size="46" fill="#9bdfff">.cloud</text>
+    <g filter="url(#text-depth)" transform="translate(330 70)">
+      <text x="0" y="96" font-family="Space Grotesk, Sora, Inter, Arial, sans-serif" font-weight="700" font-size="108" letter-spacing="-1" fill="#071126" opacity="0.75" transform="translate(7 10)">Qentra</text>
+      <text x="0" y="96" font-family="Space Grotesk, Sora, Inter, Arial, sans-serif" font-weight="700" font-size="108" letter-spacing="-1" fill="url(#text-main)">Qentra</text>
+      <text x="374" y="96" font-family="Space Grotesk, Sora, Inter, Arial, sans-serif" font-weight="700" font-size="108" letter-spacing="-1" fill="url(#text-cloud)">.cloud</text>
+      <path d="M5 124H712" stroke="#0ee7ff" stroke-opacity="0.22" stroke-width="3" stroke-linecap="round"/>
+      <text x="6" y="170" fill="#9bdfff" opacity="0.72" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="3.2">AI AUTOMATION  CLOUD PLATFORMS</text>
     </g>
   </g>
 </svg>
