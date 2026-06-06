@@ -59,9 +59,10 @@
       <ellipse cx="142" cy="99" rx="78" ry="46" fill="#ffffff" opacity="0.12"/>
     </g>
     <g filter="url(#text-depth)" transform="translate(330 70)">
-      <text x="0" y="96" font-family="Space Grotesk, Sora, Inter, Arial, sans-serif" font-weight="700" font-size="108" letter-spacing="-1" fill="#071126" opacity="0.75" transform="translate(7 10)">Qentra</text>
-      <text x="0" y="96" font-family="Space Grotesk, Sora, Inter, Arial, sans-serif" font-weight="700" font-size="108" letter-spacing="-1" fill="url(#text-main)">Qentra</text>
-      <text x="374" y="96" font-family="Space Grotesk, Sora, Inter, Arial, sans-serif" font-weight="700" font-size="108" letter-spacing="-1" fill="url(#text-cloud)">.cloud</text>
+      <text x="0" y="96" font-family="Space Grotesk, Sora, Inter, Arial, sans-serif" font-weight="700" font-size="108" letter-spacing="-1" fill="#071126" opacity="0.75" transform="translate(7 10)">Qentra.cloud</text>
+      <text x="0" y="96" font-family="Space Grotesk, Sora, Inter, Arial, sans-serif" font-weight="700" font-size="108" letter-spacing="-1">
+        <tspan fill="url(#text-main)">Qentra</tspan><tspan fill="url(#text-cloud)">.cloud</tspan>
+      </text>
       <path d="M5 124H712" stroke="#0ee7ff" stroke-opacity="0.22" stroke-width="3" stroke-linecap="round"/>
       <text x="6" y="170" fill="#9bdfff" opacity="0.72" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="3.2">AI AUTOMATION  CLOUD PLATFORMS</text>
     </g>

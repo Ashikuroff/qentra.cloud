@@ -16,9 +16,10 @@
   </defs>
   <rect width="620" height="120" fill="transparent"/>
   <g filter="url(#text-depth)">
-    <text x="0" y="78" font-family="Space Grotesk, Sora, Inter, Arial, sans-serif" font-weight="700" font-size="64" letter-spacing="-0.6" fill="#071126" opacity="0.75" transform="translate(4 6)">Qentra</text>
-    <text x="0" y="78" font-family="Space Grotesk, Sora, Inter, Arial, sans-serif" font-weight="700" font-size="64" letter-spacing="-0.6" fill="url(#text-main)">Qentra</text>
-    <text x="222" y="78" font-family="Space Grotesk, Sora, Inter, Arial, sans-serif" font-weight="700" font-size="64" letter-spacing="-0.6" fill="url(#text-cloud)">.cloud</text>
+    <text x="0" y="78" font-family="Space Grotesk, Sora, Inter, Arial, sans-serif" font-weight="700" font-size="64" letter-spacing="-0.6" fill="#071126" opacity="0.75" transform="translate(4 6)">Qentra.cloud</text>
+    <text x="0" y="78" font-family="Space Grotesk, Sora, Inter, Arial, sans-serif" font-weight="700" font-size="64" letter-spacing="-0.6">
+      <tspan fill="url(#text-main)">Qentra</tspan><tspan fill="url(#text-cloud)">.cloud</tspan>
+    </text>
     <path d="M4 96H438" stroke="#0ee7ff" stroke-opacity="0.22" stroke-width="2" stroke-linecap="round"/>
   </g>
 </svg>
