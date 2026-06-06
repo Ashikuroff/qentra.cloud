@@ -16,7 +16,9 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     'gpu-kubernetes',
     'cloud-security',
     'ai-security-guardrails',
-    'pricing'
+    'pricing',
+    'blog',
+    'blog/cloud-engineering-best-practices-ai-automation'
   ]
   const lastModified = new Date().toISOString()
 

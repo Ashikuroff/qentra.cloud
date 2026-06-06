@@ -11,12 +11,13 @@ export default function Header() {
           <img src="/logo-wordmark.svg" alt="Qentra.cloud" className="hidden sm:block h-8" />
         </Link>
 
-        <nav className="hidden md:flex gap-8 items-center text-sm text-white/80">
+        <nav className="hidden md:flex gap-5 lg:gap-8 items-center text-sm text-white/80">
           <Link href="/" className="hover:text-white transition">Home</Link>
           <Link href="/ai-automation" className="hover:text-white transition">AI Automation</Link>
           <Link href="/platform-engineering" className="hover:text-white transition">Platform Engineering</Link>
           <Link href="/cloud-security" className="hover:text-white transition">Cloud Security</Link>
           <Link href="/pricing" className="hover:text-white transition">Pricing</Link>
+          <Link href="/blog" className="hover:text-white transition">Blog</Link>
           <a href="/#about" className="hover:text-white transition">About</a>
           <a href="/#contact" className="ml-4 inline-block px-4 py-2 rounded-md bg-gradient-to-r from-electric to-cyan text-black font-semibold">Contact</a>
         </nav>
@@ -50,6 +51,7 @@ export default function Header() {
             <Link href="/platform-engineering" onClick={() => setIsOpen(false)} className="hover:underline">Platform Engineering</Link>
             <Link href="/cloud-security" onClick={() => setIsOpen(false)} className="hover:underline">Cloud Security</Link>
             <Link href="/pricing" onClick={() => setIsOpen(false)} className="hover:underline">Pricing</Link>
+            <Link href="/blog" onClick={() => setIsOpen(false)} className="hover:underline">Blog</Link>
             <a href="/#about" onClick={() => setIsOpen(false)} className="hover:underline">About</a>
             <a href="/#contact" onClick={() => setIsOpen(false)} className="hover:underline">Contact</a>
           </nav>

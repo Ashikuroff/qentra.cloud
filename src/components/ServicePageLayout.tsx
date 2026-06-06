@@ -11,6 +11,8 @@ type ServicePageLayoutProps = {
   canonicalPath: string
   serviceName: string
   includeServiceSchema?: boolean
+  ogType?: 'website' | 'article'
+  breadcrumbs?: Array<{ name: string; item: string }>
   structuredData?: JsonLd[]
   children: ReactNode
 }
@@ -21,11 +23,17 @@ export default function ServicePageLayout({
   canonicalPath,
   serviceName,
   includeServiceSchema = true,
+  ogType = 'website',
+  breadcrumbs,
   structuredData = [],
   children
 }: ServicePageLayoutProps) {
   const siteUrl = process.env.SITE_URL || 'https://qentra.cloud'
   const canonicalUrl = `${siteUrl}${canonicalPath}`
+  const breadcrumbItems = breadcrumbs || [
+    { name: 'Home', item: siteUrl },
+    { name: serviceName, item: canonicalUrl }
+  ]
   const jsonLd = [
     {
       '@context': 'https://schema.org',
@@ -53,20 +61,12 @@ export default function ServicePageLayout({
     {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: siteUrl
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: serviceName,
-          item: canonicalUrl
-        }
-      ]
+      itemListElement: breadcrumbItems.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.name,
+        item: item.item
+      }))
     },
     ...structuredData
   ]
@@ -79,7 +79,7 @@ export default function ServicePageLayout({
         <link rel="canonical" href={canonicalUrl} key="canonical" />
         <meta property="og:title" content={title} key="og:title" />
         <meta property="og:description" content={description} key="og:description" />
-        <meta property="og:type" content="website" key="og:type" />
+        <meta property="og:type" content={ogType} key="og:type" />
         <meta property="og:url" content={canonicalUrl} key="og:url" />
         <meta property="og:image" content={`${siteUrl}/og-image-new.svg`} key="og:image" />
         <meta property="og:site_name" content="Qentra.cloud" key="og:site_name" />
