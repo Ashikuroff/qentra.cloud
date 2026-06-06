@@ -23,6 +23,16 @@ const FAQS = [
     question: 'Can Qentra.cloud support both AI systems and core platform engineering?',
     answer:
       'Yes. The delivery model is built around both application-layer AI automation and the cloud engineering needed to run those systems reliably in production.'
+  },
+  {
+    question: 'Are there pricing tiers for Qentra.cloud services?',
+    answer:
+      'Yes. Qentra.cloud offers starting tiers for discovery, implementation, and advisory work. Final pricing depends on the systems involved, the delivery timeline, and the level of hands-on engineering required.'
+  },
+  {
+    question: 'Can Qentra.cloud help with cloud migration?',
+    answer:
+      'Yes. Qentra.cloud supports cloud migration planning and implementation, including platform architecture, Kubernetes readiness, Infrastructure as Code, security controls, and delivery workflow changes.'
   }
 ]
 

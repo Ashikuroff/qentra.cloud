@@ -36,10 +36,21 @@ export default function GPUKubernetesPage() {
           'Clearer scalability path for demanding compute workloads',
           'Improved platform readiness for future AI product expansion'
         ]}
+        useCases={[
+          'Teams need GPU-aware Kubernetes environments for inference, model services, batch processing, or AI platform growth.',
+          'Existing platforms struggle with scheduling, observability, scaling, or cost control for heavier compute workloads.',
+          'Engineering leaders need a pragmatic architecture before committing to new AI infrastructure spend.'
+        ]}
+        proofPoints={[
+          'Architecture recommendations cover node pools, workload placement, autoscaling, networking, storage, and observability.',
+          'Runbooks define health checks, failure modes, deployment expectations, and capacity planning signals.',
+          'Infrastructure plans connect GPU usage to delivery workflows, security controls, and long-term platform operations.'
+        ]}
         relatedLinks={[
           { href: '/platform-engineering', label: 'Platform Engineering' },
           { href: '/ai-automation', label: 'AI Automation' },
-          { href: '/cloud-security', label: 'Cloud Security' }
+          { href: '/cloud-security', label: 'Cloud Security' },
+          { href: '/pricing', label: 'Pricing' }
         ]}
       />
     </ServicePageLayout>

@@ -9,6 +9,8 @@ type ServiceLandingPageProps = {
   highlights: string[]
   deliverables: string[]
   outcomes: string[]
+  useCases?: string[]
+  proofPoints?: string[]
   relatedLinks: Array<{ href: string; label: string }>
 }
 
@@ -20,6 +22,8 @@ export default function ServiceLandingPage({
   highlights,
   deliverables,
   outcomes,
+  useCases = [],
+  proofPoints = [],
   relatedLinks
 }: ServiceLandingPageProps) {
   return (
@@ -37,6 +41,44 @@ export default function ServiceLandingPage({
           </Link>
         </div>
       </section>
+
+      {(useCases.length > 0 || proofPoints.length > 0) && (
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {useCases.length > 0 && (
+            <article className="glass rounded-xl p-6">
+              <h2 className="text-2xl font-heading font-extrabold">Ideal Use Cases</h2>
+              <p className="mt-3 text-white/75">
+                These engagements are best suited for teams that need practical implementation, not a generic strategy deck.
+              </p>
+              <ul className="mt-4 space-y-3 text-white/80">
+                {useCases.map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="mt-2 h-2 w-2 rounded-full bg-electric shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          )}
+
+          {proofPoints.length > 0 && (
+            <article className="glass rounded-xl p-6">
+              <h2 className="text-2xl font-heading font-extrabold">What Good Looks Like</h2>
+              <p className="mt-3 text-white/75">
+                Every recommendation is tied to visible engineering outcomes, measurable platform behavior, or governed operational use.
+              </p>
+              <ul className="mt-4 space-y-3 text-white/80">
+                {proofPoints.map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="mt-2 h-2 w-2 rounded-full bg-cyan shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          )}
+        </section>
+      )}
 
       <section className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-6 items-start">
         <article className="glass rounded-xl p-6">

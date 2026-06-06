@@ -19,8 +19,8 @@ module.exports = {
       }
     },
     fontFamily: {
-      sans: ['Inter', 'ui-sans-serif', 'system-ui'],
-      heading: ['Space Grotesk', 'Sora', 'Inter', 'ui-sans-serif']
+      sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui'],
+      heading: ['var(--font-heading)', 'var(--font-sora)', 'var(--font-inter)', 'ui-sans-serif']
     }
   },
   plugins: []

@@ -36,10 +36,21 @@ export default function PlatformEngineeringPage() {
           'Better support for scaling cloud-native and AI-enabled products',
           'Lower risk during modernization and platform growth initiatives'
         ]}
+        useCases={[
+          'Engineering teams are slowed by inconsistent environments, unclear platform ownership, or brittle delivery pipelines.',
+          'Existing Kubernetes clusters need stabilization, observability, GitOps practices, or workload redesign.',
+          'AI or data workloads require stronger cloud foundations before they can run reliably in production.'
+        ]}
+        proofPoints={[
+          'Platform plans define ownership boundaries, golden paths, service standards, and adoption steps.',
+          'Kubernetes recommendations cover scaling, readiness, observability, deployment safety, and cost visibility.',
+          'Delivery improvements are tied to measurable release reliability, environment consistency, and operational confidence.'
+        ]}
         relatedLinks={[
           { href: '/gpu-kubernetes', label: 'GPU Kubernetes Platforms' },
           { href: '/ai-automation', label: 'AI Automation' },
-          { href: '/cloud-security', label: 'Cloud Security' }
+          { href: '/cloud-security', label: 'Cloud Security' },
+          { href: '/pricing', label: 'Pricing' }
         ]}
       />
     </ServicePageLayout>

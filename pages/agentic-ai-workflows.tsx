@@ -36,10 +36,21 @@ export default function AgenticAIWorkflowsPage() {
           'Lower risk when rolling out workflow-based AI capabilities',
           'Clearer path from experimentation to production adoption'
         ]}
+        useCases={[
+          'Support and operations teams need AI workflows that can research, summarize, route, and escalate with clear controls.',
+          'Knowledge-heavy teams want RAG systems that connect answers to current internal documentation and business data.',
+          'Product teams need agent orchestration patterns before adding autonomous AI behavior to customer-facing systems.'
+        ]}
+        proofPoints={[
+          'Agent workflows define tool access, prompt boundaries, escalation paths, and expected decision points.',
+          'RAG implementations include source grounding, retrieval evaluation, access control, and response quality checks.',
+          'Operational dashboards expose workflow outcomes, exceptions, latency, and improvement opportunities.'
+        ]}
         relatedLinks={[
           { href: '/ai-automation', label: 'AI Automation' },
           { href: '/platform-engineering', label: 'Platform Engineering' },
-          { href: '/cloud-security', label: 'Cloud Security' }
+          { href: '/cloud-security', label: 'Cloud Security' },
+          { href: '/pricing', label: 'Pricing' }
         ]}
       />
     </ServicePageLayout>

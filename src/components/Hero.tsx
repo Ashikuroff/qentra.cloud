@@ -6,8 +6,8 @@ const slides = [
   {
     id: 'ai',
     label: 'AI Automation',
-    title: 'AI automation for agentic workflows and secure RAG systems.',
-    subtitle: 'Design autonomous agents, retrieval pipelines, and workflow automation that reduce manual work and bring production-ready intelligence into daily operations.',
+    title: 'Transform your business with AI automation.',
+    subtitle: 'Streamline operations and boost efficiency with Qentra.cloud AI automation, cloud engineering, and Kubernetes consulting for teams turning AI workflows into production systems.',
     cta: 'Explore AI Automation',
     img: '/hero-ai.png',
     bg: 'bg-[radial-gradient(600px_400px_at_10%_20%,rgba(14,231,255,0.04),transparent_12%),radial-gradient(400px_300px_at_90%_80%,rgba(102,16,242,0.03),transparent_18%)]'

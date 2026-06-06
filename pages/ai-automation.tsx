@@ -36,9 +36,20 @@ export default function AIAutomationPage() {
           'Faster rollout of practical AI features with lower implementation risk',
           'More reliable automation built around measured business processes'
         ]}
+        useCases={[
+          'Operations teams want to automate triage, routing, research, reporting, or repetitive service workflows.',
+          'Product teams need AI features connected to trusted documents, systems, and review paths.',
+          'Leadership wants a realistic roadmap for moving from AI prototypes to production workflow automation.'
+        ]}
+        proofPoints={[
+          'Workflow maps show triggers, agent responsibilities, system integrations, and human approval points.',
+          'Retrieval pipelines use scoped data access, evaluation criteria, and traceable answer sources.',
+          'Automation rollouts include monitoring, fallback handling, and measurable operational targets.'
+        ]}
         relatedLinks={[
-          { href: '/cloud-engineering', label: 'Cloud Engineering' },
+          { href: '/platform-engineering', label: 'Platform Engineering' },
           { href: '/cloud-security', label: 'Cloud Security' },
+          { href: '/pricing', label: 'Pricing' },
           { href: '/', label: 'Homepage' }
         ]}
       />

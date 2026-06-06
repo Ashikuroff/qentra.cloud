@@ -36,9 +36,20 @@ export default function CloudSecurityPage() {
           'Better alignment between security expectations and release practices',
           'Clearer path to sustainable, repeatable security improvements'
         ]}
+        useCases={[
+          'Cloud teams need practical security controls across identity, secrets, infrastructure, and release workflows.',
+          'AI-enabled products require guardrails around prompts, outputs, data access, logging, and human review.',
+          'Security leaders want remediation priorities that engineering teams can implement without blocking delivery.'
+        ]}
+        proofPoints={[
+          'Risk reviews produce prioritized controls linked to platform behavior and delivery workflows.',
+          'DevSecOps changes add repeatable checks for secrets, policies, dependencies, and deployment readiness.',
+          'AI guardrails define acceptable data paths, escalation points, monitoring signals, and review criteria.'
+        ]}
         relatedLinks={[
           { href: '/ai-automation', label: 'AI Automation' },
-          { href: '/cloud-engineering', label: 'Cloud Engineering' },
+          { href: '/platform-engineering', label: 'Platform Engineering' },
+          { href: '/pricing', label: 'Pricing' },
           { href: '/', label: 'Homepage' }
         ]}
       />

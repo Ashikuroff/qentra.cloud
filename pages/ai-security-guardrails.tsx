@@ -36,10 +36,21 @@ export default function AISecurityGuardrailsPage() {
           'Clearer responsibilities and checks across delivery pipelines',
           'Better alignment between security goals and production operations'
         ]}
+        useCases={[
+          'Teams are introducing AI features and need guardrails before exposing sensitive workflows or data paths.',
+          'Security and engineering leaders need practical DevSecOps controls across cloud-native release pipelines.',
+          'Organizations want a staged remediation plan for AI, platform, and delivery risks without pausing product work.'
+        ]}
+        proofPoints={[
+          'Guardrail designs cover prompt safety, retrieval boundaries, access checks, logging, and human escalation.',
+          'DevSecOps recommendations map to CI/CD checks, policy enforcement, dependency visibility, and secrets handling.',
+          'Security improvements are prioritized by operational impact, implementation effort, and production risk reduction.'
+        ]}
         relatedLinks={[
           { href: '/cloud-security', label: 'Cloud Security' },
           { href: '/platform-engineering', label: 'Platform Engineering' },
-          { href: '/ai-automation', label: 'AI Automation' }
+          { href: '/ai-automation', label: 'AI Automation' },
+          { href: '/pricing', label: 'Pricing' }
         ]}
       />
     </ServicePageLayout>

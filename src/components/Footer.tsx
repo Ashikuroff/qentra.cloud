@@ -13,6 +13,7 @@ export default function Footer() {
           <a href="/agentic-ai-workflows" className="hover:text-white transition">AI Workflows</a>
           <a href="/gpu-kubernetes" className="hover:text-white transition">GPU Kubernetes</a>
           <a href="/ai-security-guardrails" className="hover:text-white transition">AI Guardrails</a>
+          <a href="/pricing" className="hover:text-white transition">Pricing</a>
           <a href="/#about" className="hover:text-white transition">About</a>
           <a href="/#faq" className="hover:text-white transition">FAQ</a>
           <a href="/#contact" className="hover:text-white transition">Contact</a>
