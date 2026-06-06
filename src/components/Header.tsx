@@ -6,9 +6,19 @@ export default function Header() {
 
     <header className="fixed top-0 left-0 right-0 z-50 bg-transparent">
       <div className="container flex items-center justify-between py-4">
-        <Link href="/" className="flex items-center gap-3">
-          <img src="/logo-mark.svg" alt="Qentra" className="w-10 h-10 logo-glow" />
-          <img src="/logo-wordmark.svg" alt="Qentra" className="hidden sm:block h-10 lg:h-11" />
+        <Link href="/" className="flex items-center gap-3 min-w-0" aria-label="Qentra home">
+          <img src="/logo-mark.svg" alt="" aria-hidden="true" className="w-10 h-10 logo-glow shrink-0" />
+          <span className="flex min-w-0 flex-col leading-none">
+            <span className="font-heading text-[1.35rem] font-extrabold tracking-normal text-white sm:text-2xl lg:text-[1.65rem]">
+              Qentra
+            </span>
+            <span className="mt-1 text-[0.64rem] font-bold uppercase leading-[0.86rem] tracking-[0.045em] text-[#9bdfff] sm:hidden">
+              AI Automation<br />&amp; Cloud Engineering
+            </span>
+            <span className="mt-1 hidden whitespace-nowrap text-[0.72rem] font-bold uppercase leading-none tracking-[0.065em] text-[#9bdfff] sm:block lg:text-xs">
+              AI Automation &amp; Cloud Engineering
+            </span>
+          </span>
         </Link>
 
         <nav className="hidden md:flex gap-5 lg:gap-8 items-center text-sm text-white/80">
@@ -22,13 +32,13 @@ export default function Header() {
           <a href="/#contact" className="ml-4 inline-block px-4 py-2 rounded-md bg-gradient-to-r from-electric to-cyan text-black font-semibold">Contact</a>
         </nav>
 
-        <div className="md:hidden">
+        <div className="md:hidden shrink-0">
           <button
             aria-label="Open menu"
             aria-expanded={false}
             aria-controls="mobile-menu"
             onClick={() => setIsOpen(true)}
-            className="bg-white/6 p-2 rounded-md hover:bg-white/10 transition"
+            className="bg-white/10 p-2 rounded-md text-white/90 hover:bg-white/15 transition"
           >
             ☰
           </button>

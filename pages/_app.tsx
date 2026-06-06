@@ -95,34 +95,51 @@ export default function App({ Component, pageProps }: AppProps) {
         strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
-            window.botpress.init({
-              botId: "d198de56-bc84-4e3c-87cf-13921ff6f186",
-              configuration: {
-                version: "v2",
-                botName: "Qentra AI Cloud Advisor",
-                botAvatar: "${siteUrl}/logo-mark.svg",
-                website: {},
-                email: {},
-                phone: {},
-                termsOfService: {},
-                privacyPolicy: {},
-                color: "#3276EA",
-                variant: "solid",
-                headerVariant: "solid",
-                themeMode: "light",
-                fontFamily: "inter",
-                radius: 4,
-                feedbackEnabled: false,
-                footer: "[by Botpress](https://botpress.com/?from=webchat)",
-                soundEnabled: false,
-                proactiveMessageEnabled: false,
-                proactiveBubbleMessage: "Hi! Need help?",
-                proactiveBubbleTriggerType: "afterDelay",
-                proactiveBubbleDelayTime: 10,
-                conversationHistory: false
-              },
-              clientId: "3b582d52-8797-477a-9d90-c42c6213b662"
-            });
+            (function initQentraBotpress() {
+              var attempts = 0;
+              var config = {
+                botId: "d198de56-bc84-4e3c-87cf-13921ff6f186",
+                configuration: {
+                  version: "v2",
+                  botName: "Qentra AI Cloud Advisor",
+                  botAvatar: "${siteUrl}/logo-mark.svg",
+                  website: {},
+                  email: {},
+                  phone: {},
+                  termsOfService: {},
+                  privacyPolicy: {},
+                  color: "#3276EA",
+                  variant: "solid",
+                  headerVariant: "solid",
+                  themeMode: "light",
+                  fontFamily: "inter",
+                  radius: 4,
+                  feedbackEnabled: false,
+                  footer: "[by Botpress](https://botpress.com/?from=webchat)",
+                  soundEnabled: false,
+                  proactiveMessageEnabled: false,
+                  proactiveBubbleMessage: "Hi! Need help?",
+                  proactiveBubbleTriggerType: "afterDelay",
+                  proactiveBubbleDelayTime: 10,
+                  conversationHistory: false
+                },
+                clientId: "3b582d52-8797-477a-9d90-c42c6213b662"
+              };
+
+              function start() {
+                if (window.botpress && typeof window.botpress.init === "function") {
+                  window.botpress.init(config);
+                  return;
+                }
+
+                attempts += 1;
+                if (attempts < 40) {
+                  window.setTimeout(start, 250);
+                }
+              }
+
+              start();
+            })();
           `
         }}
       />
