@@ -14,6 +14,7 @@ import Testimonials from '../src/components/Testimonials'
 import FAQ, { FAQS } from '../src/components/FAQ'
 import ContactForm from '../src/components/ContactForm'
 import Footer from '../src/components/Footer'
+import { PRODUCTS } from '../src/data/products'
 
 export default function Home() {
   return (
@@ -32,6 +33,29 @@ export default function Home() {
                 acceptedAnswer: {
                   '@type': 'Answer',
                   text: item.answer
+                }
+              }))
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'ItemList',
+              name: 'Qentra SaaS products',
+              itemListElement: PRODUCTS.map((product, index) => ({
+                '@type': 'ListItem',
+                position: index + 1,
+                item: {
+                  '@type': 'SoftwareApplication',
+                  name: product.name,
+                  applicationCategory: 'BusinessApplication',
+                  operatingSystem: 'Web',
+                  url: product.url,
+                  description: product.description,
+                  featureList: product.features
                 }
               }))
             })
