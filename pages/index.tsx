@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Header from '../src/components/Header'
 import Hero from '../src/components/Hero'
+import Products from '../src/components/Products'
 import Services from '../src/components/Services'
 import Solutions from '../src/components/Solutions'
 import AISection from '../src/components/features/AISection'
@@ -42,6 +43,7 @@ export default function Home() {
         <Hero />
         {/* Feature slider sections */}
         <section aria-hidden className="pt-6" />
+        <Products />
         <AISection />
         <CloudSection />
         <SecuritySection />

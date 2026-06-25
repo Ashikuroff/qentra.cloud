@@ -23,6 +23,7 @@ export default function Header() {
 
         <nav className="hidden md:flex gap-5 lg:gap-8 items-center text-sm text-white/80">
           <Link href="/" className="hover:text-white transition">Home</Link>
+          <Link href="/#products" className="hover:text-white transition">Products</Link>
           <Link href="/ai-automation" className="hover:text-white transition">AI Automation</Link>
           <Link href="/platform-engineering" className="hover:text-white transition">Platform Engineering</Link>
           <Link href="/cloud-security" className="hover:text-white transition">Cloud Security</Link>
@@ -35,7 +36,7 @@ export default function Header() {
         <div className="md:hidden shrink-0">
           <button
             aria-label="Open menu"
-            aria-expanded={false}
+            aria-expanded={isOpen}
             aria-controls="mobile-menu"
             onClick={() => setIsOpen(true)}
             className="bg-white/10 p-2 rounded-md text-white/90 hover:bg-white/15 transition"
@@ -57,6 +58,7 @@ export default function Header() {
           </button>
           <nav className="flex flex-col gap-6 text-white text-xl text-center">
             <Link href="/" onClick={() => setIsOpen(false)} className="hover:underline">Home</Link>
+            <Link href="/#products" onClick={() => setIsOpen(false)} className="hover:underline">Products</Link>
             <Link href="/ai-automation" onClick={() => setIsOpen(false)} className="hover:underline">AI Automation</Link>
             <Link href="/platform-engineering" onClick={() => setIsOpen(false)} className="hover:underline">Platform Engineering</Link>
             <Link href="/cloud-security" onClick={() => setIsOpen(false)} className="hover:underline">Cloud Security</Link>
